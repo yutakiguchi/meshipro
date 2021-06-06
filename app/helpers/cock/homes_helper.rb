@@ -1,0 +1,2 @@
+module Cock::HomesHelper
+end
