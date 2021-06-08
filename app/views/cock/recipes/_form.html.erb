@@ -1,0 +1,23 @@
+<%=form_with model: recipe,url: recipes_path, local: true do |f|%>
+  <div class="form">
+    <%=f.label :recipe_images_images,'画像'%>
+    <%=f.attachment_field :recipe_images_images,multiple: true%>
+  </div>
+  <div class="form">
+    <%=f.label :name,'料理名'%> <span class="input-need">必須</span>
+    <%=f.text_field :name%>
+  </div>
+  <div class="form">
+    <%=f.label :explanation,'説明'%> <span class="input-unneed">任意</span>
+    <%=f.text_area :explanation%>
+  </div>
+  <div class="form">
+    <%=f.label :material,'材料'%> <span class="input-need">必須</span>
+    <%=f.text_field :material%>
+  </div>
+  <div class="form">
+    <%=f.label :cook_text,'調理行程'%><span class="input-need">必須</span>
+    <%=f.text_area :cook_text%>
+  </div>
+  <%=f.submit '投稿する'%>
+<%end%>

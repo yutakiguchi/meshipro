@@ -1,38 +1,57 @@
 class Cock::RecipesController < ApplicationController
-  def index
-    @recipes=Recipe.all
+
+ def new
+  @recipe=Recipe.new
+  @recipe.recipe_images.new
+ end
+
+ def index
+  @recipes = current_cock.recipes
+ end
+
+ def edit
+  @recipe = Recipe.find(params[:id])
+ end
+
+ def create
+  @recipe = current_cock.recipes.new(recipe_params)
+  if @recipe.save
+   # binding.pry
+    flash[:notice] = "レシピを投稿しました"
+    redirect_to recipe_path(@recipe)
+  else
+    render action: :new
   end
+ end
 
-  def show
+ def show
+  @recipe = Recipe.find(params[:id])
+ end
+
+ def update
+   @recipe = Recipe.find(parms[:id])
+  if @recipe.update
+    flash[:notice] = "レシピを更新しました"
+    redirect_to recipe_path(@recipe)
+  else
+    render action: :edit
   end
+ end
 
-  def edit
-  end
+def destroy
+   @recipe = Recipe.find(params[:id])
+ if @recipe.destroy
+   flash[:notice] = "レシピを削除しました"
+   redirect_to cock_path(current_cock)
+ else
+   render action: :recipes_path
+ end
+end
 
-  def new
-    @recipe=Recipe.new
-  end
+private
 
-  def create
-    @recipe=Recipe.new(recipe_params)
-    if @recipe.save
-      flash[:notice]="料理を投稿しました!"
-      redirect_to recipe_path(@recipe)
-    else
-      render 'new'
-    end
-  end
-
-  def update
-  end
-
-  def destroy
-  end
-
-  private
-
-   def recipe_params
-     params.require(:recipe).permit(:name,:explanation,:material,:cock_text,:cock_id,recipe_images_images:[])
-   end
+ def recipe_params
+     params.require(:recipe).permit(:name,:explanation,:material,:cook_text,recipe_images_images:[])
+ end
 
 end

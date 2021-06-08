@@ -1,0 +1,2 @@
+module Cock::RestaurantsHelper
+end

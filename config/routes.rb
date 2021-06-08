@@ -5,10 +5,12 @@ Rails.application.routes.draw do
     sessions:'cocks/sessions',
     regstractions:'cocks/registractions'
   }
-  
+
   scope module: :cock do
     root to: 'homes#top'
     get 'about'=>'homes#about'
     resources :recipes
-  end  
+    resources :cocks
+    resources :restaurants
+  end
 end

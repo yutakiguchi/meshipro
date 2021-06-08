@@ -4,7 +4,7 @@
       <%link_to "ロゴ",root_path%>
       <ul class="navbar-nav ml-auto">
         <%if cock_signed_in?%>
-        <li><%=link_to "ログアウト",destroy_cock_session_path,method::delete%></li>
+        <li><%=link_to "ログアウト",destroy_cock_session_path,method: :delete%></li>
         <li><%=link_to "飯プロとは",about_path%></li>
         <%else%>
         <li><%=link_to "無料登録",new_cock_registration_path%></li>
