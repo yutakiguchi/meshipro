@@ -10,7 +10,12 @@
   </head>
 
   <body>
-    <%= render "layouts/cock_header"%>
+
+     <%= render "layouts/header"%>
+
+    <p class="notice page-title pl-1"><%= notice %></p>
+    <p class="alert page-title pl-1"><%= alert %></p>
+
     <%= yield %>
     <%= render "layouts/footer"%>
   </body>

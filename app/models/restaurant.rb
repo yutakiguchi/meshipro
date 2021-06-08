@@ -1,6 +1,8 @@
 class Restaurant < ApplicationRecord
  belongs_to :cock
+ has_many :restaurant_comments,dependent: :destroy
  attachment :image
+
  include JpPrefecture
  jp_prefecture :prefecture_code
 

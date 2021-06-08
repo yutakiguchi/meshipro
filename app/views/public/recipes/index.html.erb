@@ -1,7 +1,7 @@
 <div class="container　pr-5">
   <div class="row">
       <%=link_to "レシピを書く",new_recipe_path%>
-    <h4>あなたのレシピは<%=@recipes.count%></h4>
+    <h5>全<%=@recipes.count%>件</h5>
      <div class="row" style="flex-wrap:wrap;">
        <div class="col mx-3">
        <% @recipes.each do |recipe|%>

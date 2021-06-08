@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
-  get 'homes/top'
-  get 'homes/about'
+  devise_for :users,controllers:{
+    sessions:'users/sessions',
+    passwords:'users/passwords',
+    registrations:'users/registrations'
+  }
+
   devise_for :cocks,controllers:{
     sessions:'cocks/sessions',
-    regstractions:'cocks/registractions'
+    passwords:'cock/passwords',
+    registrations:'cocks/registrations'
   }
 
   scope module: :cock do
@@ -12,5 +17,10 @@ Rails.application.routes.draw do
     resources :recipes
     resources :cocks
     resources :restaurants
+  end
+
+  namespace :public do
+    resources :users
+    resources :recipes
   end
 end
