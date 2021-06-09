@@ -1,21 +1,45 @@
  <% provide(:title,"#{@recipe.name}")%>
 <div class="container">
+ <h2 class="row mb-3">
+  <%= @recipe.name %>
+ </h2>
   <div class="row">
-   <% @recipe.recipe_images.each do |image|%>
-    <%=attachment_image_tag image, :image,:fill,300,300%>
-   <%end%>
-<h4 class="recipe-name">料理名</h4>
-  <% if current_cock==@recipe.cock%>
-   <%=link_to "編集",edit_recipe_path(@recipe),class: 'edit-dish'%>
-   <%=link_to "削除",recipe_path(@recipe),method: :delete,class: 'delete-recipe'%>
-  <%end%> 
-<div><%=@recipe.name%></div>
-<div>説明</div>
-<div><%=@recipe.explanation%></div>
-<div>材料</div>
-<div><%=@recipe.material%></div>
-<div>調理行程</div>
-<div><%=@recipe.cook_text%></div>
+   <div class="col-5">
+    <%= attachment_image_tag @recipe.recipe_images[0], :image,:fill,300,300 %>
+   </div>
+
+  <div class="offset-2 col-5">
+   <div class="description mb-4">
+    <h5>説明</h5>
+    <%=@recipe.explanation%>
+   </div>
+   <div class="material mb-4">
+    <h5>材料</h5>
+    <%=@recipe.material%>
+   </div>
+  </div>
  </div>
+
+ <div class="row mt-4">
+  <div class="mx-2">
+   <%= attachment_image_tag @recipe.recipe_images[1], :image,:fill,100,120 %>
+  </div>
+  <div class="mx-2">
+   <%= attachment_image_tag @recipe.recipe_images[2], :image,:fill,100,100 %>
+  </div>
+  <div class="mx-2">
+   <%= attachment_image_tag @recipe.recipe_images[3], :image,:fill,100,100 %>
+  </div>
+  <div class="mx-2">
+   <%= attachment_image_tag @recipe.recipe_images[4], :image,:fill,100,100 %>
+  </div>
+ </div>
+ <div class="row mt-5">
+  <h4>調理行程</h4>
+ </div>
+  <div class="row">
+   <%=@recipe.cook_text%>
+  </div>
 </div>
+
 

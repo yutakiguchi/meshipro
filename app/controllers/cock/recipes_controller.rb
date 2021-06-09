@@ -26,6 +26,7 @@ class Cock::RecipesController < ApplicationController
 
  def show
   @recipe = Recipe.find(params[:id])
+
  end
 
  def update

@@ -3,4 +3,8 @@ class Public::RecipesController < ApplicationController
     @recipes = Recipe.all
     @restaurants = Restaurant.all
   end
+  
+  def show
+    @recipe = Recipe.find(params[:id])
+  end  
 end

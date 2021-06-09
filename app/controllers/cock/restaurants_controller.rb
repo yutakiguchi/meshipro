@@ -13,16 +13,16 @@ class Cock::RestaurantsController < ApplicationController
       render action: :new
     end
   end
-  
+
   def show
-   @restaurant=current_cock.restaurant.find(params[:id])
+   @restaurant = Restaurant.find(params[:id])
   end
-  
-  def edit 
+
+  def edit
     @restaurant=current_cock.restaurant.find(params[:id])
-  end 
-  
-  def edit 
+  end
+
+  def edit
     @restaurant = Recipe.find(params[:id])
     if @restaurant.destroy
      flash[:notice] = "登録店舗を削除しました"
@@ -30,8 +30,8 @@ class Cock::RestaurantsController < ApplicationController
     else
      render action: :edit
     end
-  end 
-   
+  end
+
 
   private
 

@@ -21,6 +21,11 @@ Rails.application.routes.draw do
 
   namespace :public do
     resources :users
-    resources :recipes
+    resources :recipes do
+    resources :recipe_comments,only:[:create,:destroy]
+  end
+    resources :restaurant_comments,only:[:create,:destroy]
+    resources :restaurant_comments,only: [:create,:destroy]
+    
   end
 end
