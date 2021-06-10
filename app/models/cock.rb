@@ -5,5 +5,5 @@ class Cock < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :recipes,dependent: :destroy
-  has_many :restaurant,dependent: :destroy
+  has_many :restaurants,dependent: :destroy
 end

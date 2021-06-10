@@ -20,12 +20,14 @@ Rails.application.routes.draw do
   end
 
   namespace :public do
+    root to: 'homes#top'
     resources :users
     resources :recipes do
     resources :recipe_comments,only:[:create,:destroy]
+    resources :my_recipes,only:[:create,:destroy]
   end
-    resources :restaurant_comments,only:[:create,:destroy]
+    resources :restaurants do
     resources :restaurant_comments,only: [:create,:destroy]
-    
+  end
   end
 end

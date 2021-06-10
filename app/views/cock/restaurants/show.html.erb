@@ -1,11 +1,20 @@
-<div class="container mt-3">
+<div class="container mt-3 mb-5">
   <div class="row mx-auto">
+    <div class="col-6">
       <%=attachment_image_tag @restaurant,:image,:fill,500,500%>
+    </div>
+    <div class="col-6">
+     <h2 class="mx-3">
       <%=@restaurant.name%>
+     </h2>
+     <h7 class="mx-2 mt-5">
       <%=@restaurant.description%>
+     </h7>
+     <h5 class="mt-5 mx-2">
       〒<%=@restaurant.post_code%><br/>
       <%=@restaurant.prefecture_name%><%=@restaurant.address_city%><%=@restaurant.address_building%>
-
+     </h5>
+    </div>
     </div>
   </div>
 </div>

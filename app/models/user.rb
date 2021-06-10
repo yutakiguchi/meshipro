@@ -4,4 +4,5 @@ class User < ApplicationRecord
   
   has_many :recipe_comments,dependent: :destroy
   has_many :restaurant_comments,dependent: :destroy
+  has_many :my_recipes,dependent: :destroy
 end

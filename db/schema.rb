@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_08_133853) do
+ActiveRecord::Schema.define(version: 2021_06_10_015016) do
 
   create_table "cocks", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -35,6 +35,15 @@ ActiveRecord::Schema.define(version: 2021_06_08_133853) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_controllers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_controllers_on_reset_password_token", unique: true
+  end
+
+  create_table "my_recipes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "recipe_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_my_recipes_on_recipe_id"
+    t.index ["user_id"], name: "index_my_recipes_on_user_id"
   end
 
   create_table "recipe_comments", force: :cascade do |t|

@@ -1,8 +1,14 @@
 <div class="container">
-  <div class="row">
     <h1>飯プロへようこそ！</h1>
-    <h2>あなたの技を必要としている人がいます。</h2>
-    <%=link_to "Signup",new_cock_registration_path%>
-    <%=link_to "Login",new_cock_session_path%>
+  <div class="row offset offset-6 col-6">
+    <h2>あなたの技を必要としている人がいます</h2>
+  </div>
+   <div class="row mt-5 pb-10">
+    <div class="offset-3 col-3 pb-5">
+     <%=link_to "コック専用登録",new_cock_registration_path%>
+    </div>
+    <div class="col-3 offset-1 pb-5">
+     <%=link_to "コック専用ログイン",new_cock_session_path%>
+    </div>
   </div>
 </div>

@@ -3,8 +3,10 @@ class Public::RecipesController < ApplicationController
     @recipes = Recipe.all
     @restaurants = Restaurant.all
   end
-  
+
   def show
     @recipe = Recipe.find(params[:id])
-  end  
+    @recipe_comment = RecipeComment.new
+    @recipe_comments = @recipe.recipe_comments
+  end
 end

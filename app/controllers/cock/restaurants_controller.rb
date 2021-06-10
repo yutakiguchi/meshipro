@@ -19,7 +19,7 @@ class Cock::RestaurantsController < ApplicationController
   end
 
   def edit
-    @restaurant=current_cock.restaurant.find(params[:id])
+    @restaurant = current_cock.restaurant.find(params[:id])
   end
 
   def edit
