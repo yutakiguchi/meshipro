@@ -1,17 +1,16 @@
- <% provide(:title,"#{@recipe.name}")%>
+<% provide(:title,"#{@recipe.name}")%>
 <div class="container">
  <h2 class="row mb-3">
   <%= @recipe.name %>
  </h2>
-  <div class="row">
-   <div class="col-5">
-    <%= attachment_image_tag @recipe.recipe_images[0], :image,:fill,300,300 %>
-   </div>
-
+ <div class="row">
+  <div class="col-5">
+   <%= attachment_image_tag @recipe.recipe_images[0], :image,:fill,300,300 %>
+  </div>
   <div class="offset-2 col-5">
    <div class="description mb-4">
     <h5>説明</h5>
-    <%=@recipe.explanation%>
+     <%=@recipe.explanation%>
    </div>
    <div class="material mb-4">
     <h5>材料</h5>
@@ -38,24 +37,24 @@
  <div class="row mt-5 mb-3">
   <h4>調理行程</h4>
  </div>
-  <div class="row">
+ <div class="row">
    <%= @recipe.cook_text %>
-  </div>
-  <div class="row mt-5">
-   <h5>コメント一覧</h5>
-  </div>
-    <% @recipe_comments.each do |comment|%>
-    <div class="row">
-     <%= comment.text %>
-     <%= comment.user.nickname %>
-    </div>
-    <% end %>
+ </div>
+ <div class="row mt-5">
+  <h5>コメント一覧</h5>
+ </div>
+ <% @recipe_comments.each do |comment|%>
   <div class="row">
-   <%= form_with model: [:public, @recipe, @recipe_comment],local: true do |f| %>
-    <%= f.text_field :text %>
-    <%= f.submit 'コメントする' %>
-   <% end %>
+   <%= comment.text %>
+   <%= comment.user.nickname %>
   </div>
+ <% end %>
+ <div class="row">
+  <%= form_with model: [:public, @recipe, @recipe_comment],local: true do |f| %>
+   <%= f.text_field :text %>
+   <%= f.submit 'コメントする' %>
+  <% end %>
+ </div>
 </div>
 
 

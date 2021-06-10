@@ -1,0 +1,36 @@
+<div class="container mt-3 mb-5">
+  <div class="row">
+    <div class="mx-auto">
+      <div class="col-6">
+        <%=attachment_image_tag @restaurant,:image,:fill,500,500%>
+      </div>
+      <div class="col-6">
+        <h2 class="mx-3">
+          <%=@restaurant.name%>
+        </h2>
+        <h7 class="mx-2 mt-5">
+          <%=@restaurant.description%>
+        </h7>
+        <h5 class="mt-5 mx-2">
+          〒<%=@restaurant.post_code%><br/>
+          <%=@restaurant.prefecture_name%><%=@restaurant.address_city%><%=@restaurant.address_building%>
+        </h5>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-5">
+  <h5>コメント一覧</h5>
+ </div>
+ <% @restaurant_comments.each do |comment|%>
+  <div class="row">
+   <%= comment.text %>
+   <%= comment.user.nickname %>
+  </div>
+ <% end %>
+  <div class="row">
+    <%= form_with model: [:public, @restaurant, @restaurant_comment],local: true do |f| %>
+   <%= f.text_field :text %>
+   <%= f.submit 'コメントする' %>
+  <% end %>
+  </div>
+</div>
