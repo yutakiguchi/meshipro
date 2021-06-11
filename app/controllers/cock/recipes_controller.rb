@@ -1,8 +1,9 @@
 class Cock::RecipesController < ApplicationController
 
  def new
-  @recipe=Recipe.new
-  @recipe.recipe_images.new
+  @recipe = Recipe.new
+  @recipe.recipe_images.build
+  @recipe.materials.build
  end
 
  def index
@@ -52,7 +53,7 @@ end
 private
 
  def recipe_params
-     params.require(:recipe).permit(:name,:explanation,:material,:cook_text,recipe_images_images:[])
+     params.require(:recipe).permit(:name,:explanation,:material,:cook_text,materials_attributes:[:id,:name,:quantity],recipe_images_images:[])
  end
 
 end

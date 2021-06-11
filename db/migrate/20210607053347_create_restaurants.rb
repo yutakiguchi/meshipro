@@ -5,7 +5,7 @@ class CreateRestaurants < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :image_id
       t.text :description
-      t.integer :post_code
+      t.integer :postcode
       t.integer :prefecture_code
       t.string :address_street
       t.string :address_city

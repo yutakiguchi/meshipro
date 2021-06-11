@@ -16,6 +16,13 @@ end
 
 def liked_by?(user)
     MyRestaurant.where(user_id: user.id).exists?
-end  
+end
+
+validates :name, presence: true
+validates :description, presence: true
+validates :postal_code, presence: true
+validates :prefecture_code, presence: true
+validates :city, presence: true
+validates :street, presence: true
 
 end

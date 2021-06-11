@@ -14,7 +14,12 @@
    </div>
    <div class="material mb-4">
     <h5>材料</h5>
-    <%=@recipe.material%>
+    <table class="material">
+     <% @recipe.materials.each do |material| %>
+      <%= material.name %>
+      <%= material.quantity %>
+     <% end %>
+    </table>
    </div>
     <%= render 'public/my_recipes/favorite',recipe: @recipe %>
   </div>

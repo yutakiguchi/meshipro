@@ -4,7 +4,6 @@ class CreateRecipes < ActiveRecord::Migration[5.2]
       t.integer :cock_id
       t.string :name
       t.text :explanation
-      t.text :material
       t.text :cook_text
 
       t.timestamps

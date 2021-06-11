@@ -36,6 +36,6 @@ class Cock::RestaurantsController < ApplicationController
   private
 
   def restaurant_params
-    params.require(:restaurant).permit(:name,:post_code,:prefecture_code,:address_city,:address_street,:address_building,:description,:image)
+    params.require(:restaurant).permit(:name,:postcode,:prefecture_code,:address_city,:address_street,:address_building,:description,:image)
   end
 end

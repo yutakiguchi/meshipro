@@ -6,4 +6,7 @@ class Cock < ApplicationRecord
 
   has_many :recipes,dependent: :destroy
   has_many :restaurants,dependent: :destroy
+  
+  validates :email, :password, presence: true
+  
 end

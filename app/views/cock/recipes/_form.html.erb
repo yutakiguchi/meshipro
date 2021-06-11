@@ -12,9 +12,18 @@
     <%=f.text_area :explanation%>
   </div>
   <div class="form">
-    <%=f.label :material,'材料'%> <span class="input-need">必須</span>
-    <%=f.text_field :material%>
+     <%= f.fields_for :materials do |m| %>
+  <div class="row">
+  <div class="col-9">
+    <%= m.label :name,'材料' %> <span class="input-need">必須</span>
+    <%= m.text_field :name %>
   </div>
+  <div class="col-3">
+    <%= m.label :quantity,'分量' %>
+    <%= m.text_field :quantity %>
+  </div>
+</div>
+<% end %>
   <div class="form">
     <%=f.label :cook_text,'調理行程'%><span class="input-need">必須</span>
     <%=f.text_area :cook_text%>

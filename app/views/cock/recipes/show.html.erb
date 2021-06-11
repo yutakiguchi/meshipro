@@ -9,15 +9,20 @@
    </div>
 
    <div class="offset-2 col-5">
-   <div class="description mb-4">
-    <h5>説明</h5>
-    <%=@recipe.explanation%>
+    <div class="description mb-4">
+     <h5>説明</h5>
+     <%=@recipe.explanation%>
    </div>
-   <div class="material mb-4">
+   <div class="mb-4">
     <h5>材料</h5>
-    <%=@recipe.material%>
+    <table class="material">
+     <% @recipe.materials.each do |material| %>
+      <%= material.name %>
+      <%= material.quantity %>
+     <% end %>
+    </table>
    </div>
-   </div>
+  </div>
  </div>
 
  <div class="row mt-4">
