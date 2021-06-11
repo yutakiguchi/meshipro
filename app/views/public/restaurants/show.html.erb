@@ -14,6 +14,7 @@
         <h5 class="mt-5 mx-2">
           〒<%=@restaurant.post_code%><br/>
           <%=@restaurant.prefecture_name%><%=@restaurant.address_city%><%=@restaurant.address_building%>
+          <%= render 'public/my_restaurants/favorite',restaurant: @restaurant %>
         </h5>
       </div>
     </div>

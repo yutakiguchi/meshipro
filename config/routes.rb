@@ -24,10 +24,11 @@ Rails.application.routes.draw do
     resources :users
     resources :recipes do
     resources :recipe_comments,only:[:create,:destroy]
-    resources :my_recipes,only:[:create,:destroy]
+    resource :my_recipes,only:[:create,:destroy]
   end
     resources :restaurants do
     resources :restaurant_comments,only: [:create,:destroy]
+    resource :my_restaurants,only:[:create,:destroy]
   end
   end
 end

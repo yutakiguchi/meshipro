@@ -1,11 +1,11 @@
 <div class="container">
    <div class="row">
-    <h5>全<span class="font-weit-nomal small"><%= @restaurants.count %></span>件</h5>
+    <h5>全<span class="font-weit-nomal small"><%= @search_restaurants.count %></span>件</h5>
    </div>
     <div class="row mt-5">
      <div class="col-10">
      <div class="d-flex flex-wrap">
-       <% @restaurants.each do |restaurant| %>
+       <% @search_restaurants.each do |restaurant| %>
       <div class="row mx-3">
        <%= link_to public_restaurant_path(restaurant.id)do %>
        <%= attachment_image_tag restaurant, :image,:fill,230,230 %>

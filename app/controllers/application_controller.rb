@@ -1,5 +1,12 @@
 class ApplicationController < ActionController::Base
   before_action :config_permitted_parameters,if: :devise_controller?
+  before_action :set_search
+
+  def set_search
+    @search = Restaurant.ransack(params[:q])
+    @search_restaurants = @search.result
+  end
+
 
   def config_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up,keys:[:nickname])
