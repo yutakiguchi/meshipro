@@ -1,0 +1,7 @@
+<% if @my_recipes_list.present? %>
+ <% @my_recipes_list.each do |recipe| %>
+  <%= link_to public_recipe_path(recipe.id)do %>
+    <%= attachment_image_tag recipe.recipe_images[0], :image,:fill,230,230 %>
+    <h4 class="text-success"><%= recipe.name %></h4>
+  <% end %>
+  
