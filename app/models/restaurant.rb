@@ -1,6 +1,7 @@
 class Restaurant < ApplicationRecord
  belongs_to :cock
  has_many :restaurant_comments,dependent: :destroy
+ has_many :my_restaurants,dependent: :destroy
  attachment :image
 
  include JpPrefecture
@@ -14,15 +15,10 @@ def prefecture_name=(prefecture_name)
   self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
 end
 
-def liked_by?(user)
-    MyRestaurant.where(user_id: user.id).exists?
+def favorited_by?(user)
+    my_restaurants.where(user_id: user.id).exists?
 end
 
-validates :name, presence: true
-validates :description, presence: true
-validates :postal_code, presence: true
-validates :prefecture_code, presence: true
-validates :city, presence: true
-validates :street, presence: true
+
 
 end

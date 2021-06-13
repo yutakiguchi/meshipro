@@ -22,7 +22,7 @@
       </div>
      </div>
     <div class="col-2">
-      <%= link_to "店舗を登録する",new_restaurant_path %>
+      <%= link_to "店舗を登録する",new_restaurant_path, data: {"turbolinks"=>false}  %><%#turbolinksを切る%>
     <table class="table table-bottom_bordered restaurant-table mt-3">
      <% @restaurants.each do |restaurant| %>
       <tr>

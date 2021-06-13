@@ -1,32 +1,31 @@
-<%=form_with model: recipe,url: recipes_path, local: true do |f|%>
-  <div class="form">
-    <%=f.label :recipe_images_images,'画像'%>
-    <%=f.attachment_field :recipe_images_images,multiple: true%>
+<%= form_with model: recipe,url: recipes_path, local: true do |f| %>
+  <div class="mt-5 d-block">
+    <%= f.label :recipe_images_images,'画像 '%>
+    <%= f.attachment_field :recipe_images_images,multiple: true %>
   </div>
-  <div class="form">
-    <%=f.label :name,'料理名'%> <span class="input-need">必須</span>
-    <%=f.text_field :name%>
+  <div class="form mt-5 row col-3">
+    <%=f.label :name,'料理名'%> <span class="input-need">※必須</span>
+    <%=f.text_field :name, autocomplete: 'name',class: 'form-control' %>
   </div>
-  <div class="form">
-    <%=f.label :explanation,'説明'%> <span class="input-unneed">任意</span>
-    <%=f.text_area :explanation%>
+  <div class="form row mt-5">
+    <%=f.label :explanation,'説明'%> <span class="input-unneed">※任意</span>
+    <%=f.text_area :explanation, autocomplete: 'explanation',class: 'form-control'%>
   </div>
-  <div class="form">
-     <%= f.fields_for :materials do |m| %>
-  <div class="row">
-  <div class="col-9">
-    <%= m.label :name,'材料' %> <span class="input-need">必須</span>
-    <%= m.text_field :name %>
+
+    <%= f.fields_for :materials do |m| %>
+      <% render 'cock/recipes/material_fields', f: m %>
+    <% end %>
+
+
+  <div class="add-button">
+    <%= link_to_add_association "追加", f, :materials %>
   </div>
-  <div class="col-3">
-    <%= m.label :quantity,'分量' %>
-    <%= m.text_field :quantity %>
+
+  <div class="form row mt-5">
+    <%= f.label :cook_text,'調理行程' %><span class="input-need">※必須</span>
+    <%= f.text_area :cook_text ,autocomplete: 'cook_text',class: 'form-control'%>
   </div>
-</div>
-<% end %>
-  <div class="form">
-    <%=f.label :cook_text,'調理行程'%><span class="input-need">必須</span>
-    <%=f.text_area :cook_text%>
+  <div class="button offset-11 col-1 mt-3">
+    <%=f.submit '投稿する'%>
   </div>
-  <%=f.submit '投稿する'%>
 <%end%>

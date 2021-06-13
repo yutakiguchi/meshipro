@@ -1,4 +1,4 @@
-<% if recipe.liked_by?(current_user) %>
+<% if recipe.favorited_by?(current_user) %>
   <%= link_to public_recipe_my_recipes_path(recipe.id), method: :delete, local: true, class: "like" do %>
     <div class="like-link">
         <button class="like-link__btn-del">お気に入り済み<i class="far fa-thumbs-up 3x"></i></button>

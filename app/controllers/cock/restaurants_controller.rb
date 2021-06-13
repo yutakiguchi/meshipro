@@ -6,7 +6,7 @@ class Cock::RestaurantsController < ApplicationController
   def create
    @restaurant = Restaurant.new(restaurant_params)
    @restaurant.cock_id = current_cock.id
-    if @restaurant.save
+    if @restaurant.save!
      flash[:notice] = "店舗を登録しました"
      redirect_to cock_path(current_cock)
     else
@@ -22,13 +22,13 @@ class Cock::RestaurantsController < ApplicationController
     @restaurant = current_cock.restaurant.find(params[:id])
   end
 
-  def edit
+  def destroy
     @restaurant = Recipe.find(params[:id])
     if @restaurant.destroy
      flash[:notice] = "登録店舗を削除しました"
      redirect_to cock_path(current_cock)
     else
-     render action: :edit
+     #render action: :edit
     end
   end
 
@@ -36,6 +36,6 @@ class Cock::RestaurantsController < ApplicationController
   private
 
   def restaurant_params
-    params.require(:restaurant).permit(:name,:postcode,:prefecture_code,:address_city,:address_street,:address_building,:description,:image)
+    params.require(:restaurant).permit(:name,:postcode,:prefecture_code,:address_city,:address_street,:address_building,:description,:image).merge(cock_id:current_cock.id)
   end
 end

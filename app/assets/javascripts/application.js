@@ -18,7 +18,10 @@
 //= require activestorage
 //= require turbolinks
 //= require jquery
+//= require cocoon
+//= require jquery.raty
 //= require_tree .
+
 
 $(function(){
  $('#restaurant_image').on('change', function (e) {

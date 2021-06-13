@@ -1,16 +1,18 @@
 <% if user_signed_in? %>
-  <div class="row">
-    <%= search_form_for @search,url: public_restaurants_path do |f| %>
-      <div class="col-md-10">
-        <div class="form">
-          <%= f.search_field :name_cont, placeholder: 'レシピ名を入力してください',class: 'form-control' %>
+  <div class="container">
+    <div class="row mt-4">
+      <%= search_form_for @search,url: public_recipes_path do |f| %>
+        <div class="col-md-10">
+          <div class="searchbox">
+            <%= f.search_field :name_cont, placeholder: 'レシピ名を入力してください',class: 'form-control' %>
+          </div>
         </div>
-      </div>
-      <div class="col-md-2">
-        <div class="form">
-        <%= f.submit("検索する") %>
+        <div class="col-md-2">
+          <div class="form">
+          <%= f.submit ("検索する"),class: 'search-btn' %>
+          </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 <% end %>

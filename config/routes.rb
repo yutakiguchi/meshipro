@@ -22,8 +22,8 @@ Rails.application.routes.draw do
   namespace :public do
     root to: 'homes#top'
     resources :users do
-      get :my_recipes, on: :collection
-      get :my_restaurants, on: :collection
+      get :my_recipes, on: :member
+      get :my_restaurants, on: :member
     end
     resources :recipes do
     resources :recipe_comments,only:[:create,:destroy]

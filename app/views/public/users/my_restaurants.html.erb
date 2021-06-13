@@ -1,0 +1,13 @@
+<div class="container">
+  <h3>お気に入り店舗</h3>
+  <% if @my_restaurants_lists.present? %>
+   <% @my_restaurants_lists.each do |recipe| %>
+    <%= link_to public_restaurant_path(restaurant.id)do %>
+      <%= attachment_image_tag restaurant, :image,:fill,230,230 %>
+      <h4 class="text-success"><%= restaurant.name %></h4>
+    <% end %>
+   <% end %>
+  <% else %>
+  <h2>まだお気に入り登録されていません</h2>
+  <% end %>
+</div>

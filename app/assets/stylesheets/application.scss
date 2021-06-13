@@ -16,3 +16,48 @@
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+
+
+.searchbox{
+  width: 350px;
+  position:relative;
+  background-color:#fff;
+  border:1px solid #aaa;
+  border-radius:6px;
+}
+
+.search-btn{
+  display:block;
+  background:#5fad35;
+  width:90px;
+  height:36px;
+  line-height:36px;
+  border:none;
+  border-radius: 0 6px 6px 0;
+  color:#FFF;
+  margin-top:5px;
+}
+
+header{
+  width: 100%;
+  background-color:gold;
+  height: 100px;
+}
+
+body{
+  position: relative;
+}
+
+main{
+  min-height: calc(100vh-100px);
+  padding-bottom: 100px;
+}
+
+footer{
+  width: 100%;
+  background-color:gold;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  height:50px;
+}
