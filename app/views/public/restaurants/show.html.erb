@@ -22,16 +22,36 @@
   <div class="row mt-5">
   <h5>コメント一覧</h5>
  </div>
- <% @restaurant_comments.each do |comment|%>
-  <div class="row">
-   <%= comment.text %>
-   <%= comment.user.nickname %>
-  </div>
- <% end %>
+ <table class="table">
+   <% @restaurant_comments.each do |comment|%>
+     <%= comment.user.nickname %>
+     <%= comment.text %>
+     <div class="rating_stars" data-score="<%= comment.rating %>"></div>
+     <script>
+      $('.rating_stars').raty({
+        readOnly: true,
+        score: function() {
+          return $(this).attr('data-score');
+        },
+        path: '/assets/'
+      });
+     </script>
+   <% end %>
+ </table>
+
+
   <div class="row">
     <%= form_with model: [:public, @restaurant, @restaurant_comment],local: true do |f| %>
    <%= f.text_field :text %>
    <%= f.submit 'コメントする' %>
   <% end %>
+  <script>
+   $('#rating_stars').raty({
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    scoreName: 'recipe_comment[rating]' //登録するモデル名とカラム名を記述
+   });
+  </script>
   </div>
 </div>

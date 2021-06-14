@@ -12,7 +12,7 @@ class Public::RecipeCommentsController < ApplicationController
 
 private
  def recipe_comment_params
-   params.require(:recipe_comment).permit(:text).merge(user_id:current_user.id)
+   params.require(:recipe_comment).permit(:text,:rating).merge(user_id:current_user.id)
  end
 
 end

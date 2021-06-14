@@ -62,7 +62,7 @@ footer{
   height:50px;
 }
 
-.menu1 a:hover{
-  text-decoration: none;
-  text-decoration-width: 1px;
+
+.dropdown:hover .dropdown-menu {
+    display: block;
 }

@@ -4,10 +4,10 @@
   <%= @recipe.name %>
  </h2>
  <div class="row">
-  <div class="col-5">
+  <div class="col-4">
    <%= attachment_image_tag @recipe.recipe_images[0], :image,:fill,300,300 %>
   </div>
-  <div class="offset-2 col-5">
+  <div class="offset-1 col-2">
    <div class="description mb-4">
     <h5>説明</h5>
      <%=@recipe.explanation%>
@@ -23,6 +23,23 @@
    </div>
     <%= render 'public/my_recipes/favorite',recipe: @recipe %>
   </div>
+  <div class="offset-2 col-3 mt-3">
+   <div class="cock_restaurant">
+    <% @restaurants.each do |restaurant| %>
+     <%= link_to public_restaurant_path(restaurant.id) do %>
+      <%= attachment_image_tag restaurant, :image,:fill,150,150 %>
+      <p><%= restaurant.name %></p>
+     <% end %>
+
+    <%end %>
+   </div>
+  </div>
+ </div>
+ 
+ <div class="row mt-3 pl-3">
+  <div class="average-review-rating" data-score=<%= @average_rating %>> </div>
+  <p><%= @recipe.recipe_comments.count %>reviews</p>
+ 
  </div>
 
  <div class="row mt-4">
@@ -42,23 +59,47 @@
  <div class="row mt-5 mb-3">
   <h4>調理行程</h4>
  </div>
- <div class="row">
-   <%= @recipe.cook_text %>
+ <div class="row pb-5">
+   <h6><%= @recipe.cook_text %></h6>
  </div>
  <div class="row mt-5">
   <h5>コメント一覧</h5>
  </div>
- <% @recipe_comments.each do |comment|%>
-  <div class="row">
-   <%= comment.text %>
+ <table class="table">
+  <% @recipe_comments.each do |comment|%>
    <%= comment.user.nickname %>
-  </div>
+   <%= comment.text %>
+   <div class="rating_stars" data-score="<%= comment.rating %>"></div>
+  <script>
+  $('.rating_stars').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+ </script>
  <% end %>
+</table>
+
  <div class="row">
   <%= form_with model: [:public, @recipe, @recipe_comment],local: true do |f| %>
-   <%= f.text_field :text %>
-   <%= f.submit 'コメントする' %>
+   <%= f.text_area :text, placeholder: 'コメントをここに', size: "250×300" %>
+   <div id="rating_stars">
+    <label>評価</label>
+   </div>
+   <div class="action mt-3">
+    <%= f.submit 'コメントする' %>
+   </div>
   <% end %>
+  <script>
+   $('#rating_stars').raty({
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    scoreName: 'recipe_comment[rating]' //登録するモデル名とカラム名を記述
+   });
+  </script>
  </div>
 </div>
 
