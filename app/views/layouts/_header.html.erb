@@ -5,7 +5,7 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-     <div class="collapse navbar-collapse" id="navbarNavDropdown">
+     <div class="collapse navbar-collapse menu1" id="navbarNavDropdown">
       <ul class="navbar-nav ml-auto">
         <% if cock_signed_in? %>
          <li><%= link_to "マイページ",cock_path(current_cock), class: 'nav-link text-dark' %></li>
@@ -14,8 +14,14 @@
         <%elsif user_signed_in? %>
          <li><%= link_to "レシピ一覧",public_recipes_path, class: 'nav-link text-dark' %></li>
          <li><%= link_to "店舗一覧",public_restaurants_path, class: 'nav-link text-dark' %></li>
-         <li><%= link_to "お気に入り"%></li>
-         <li class=""><%= link_to "ログアウト",destroy_user_session_path,method: :delete, class: 'nav-link text-dark' %></li>
+         <li class="dropdown nav-link">
+           <a href="#" class="dropdown-toggle text-dark" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">お気に入り<span class="caret"></span></a>
+           <ul class="dropdown-menu">
+             <li><%= link_to "お気に入りレシピ" ,my_recipes_public_user_path(current_user), class: 'nav-link text-dark' %></li>
+             <li><%= link_to "お気に入り店舗" ,my_restaurants_public_user_path(current_user), class: 'nav-link text-dark' %></li>
+           </ul>
+         </li>
+         <li><%= link_to "ログアウト",destroy_user_session_path,method: :delete, class: 'nav-link text-dark' %></li>
              <%#= link_to "飯プロとは",about_path, class: 'nav-link text-dark' %>
         <%else%>
          <li><%= link_to "閲覧無料登録",public_root_path, class: 'nav-link text-dark' %></li>
