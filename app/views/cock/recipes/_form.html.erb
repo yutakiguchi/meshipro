@@ -1,6 +1,7 @@
 <%= form_with model: recipe,url: recipes_path, local: true do |f| %>
   <div class="mt-5 d-block">
-    <%= f.label :recipe_images_images,'画像 '%>
+    <%= f.label :recipe_images_images,'料理画像 '%>
+    <%= attachment_image_tag recipe.recipe_images[0], :image,:fill,450,380,format: 'jpeg',fallback: "795px-No_image.jpg",size:'450x380',id:"preview" %>
     <%= f.attachment_field :recipe_images_images,multiple: true %>
   </div>
   <div class="form mt-5 row col-3">
@@ -23,7 +24,7 @@
 
   <div class="form row mt-5">
     <%= f.label :cook_text,'調理行程' %><span class="input-need">※必須</span>
-    <%= f.text_area :cook_text ,autocomplete: 'cook_text',class: 'form-control'%>
+    <%= f.text_area :cook_text ,autocomplete: 'cook_text',class: 'form-control',size: "10x10"%>
   </div>
   <div class="button offset-11 col-1 mt-3">
     <%=f.submit '投稿する'%>

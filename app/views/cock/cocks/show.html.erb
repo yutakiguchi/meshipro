@@ -1,34 +1,47 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-   <div class="col-10"></div>
-    <div class="col-2">
-      <%= link_to "レシピを書く",new_recipe_path %>
+   <div class="col-9"></div>
+    <div class="col-3">
+      <%= link_to "レシピを書く",new_recipe_path, data: {"turbolinks"=>false},class: "btn btn-info" %>
     </div>
   </div>
    <div class="row">
-    <h5>あなたのレシピは<span class="font-weit-nomal small"><%= @recipes.count %></span>件です</h5>
+    <h5 class="offset-1">あなたのレシピは<span class="font-weit-nomal small"><%= @recipes.count %></span>件です</h5>
    </div>
     <div class="row mt-5">
-     <div class="col-10">
+     <div class="col-8 offset-1">
      <div class="d-flex flex-wrap">
        <% @recipes.each do |recipe| %>
-      <div class="row mx-3">
-       <%= link_to recipe_path(recipe.id)do %>
-       <%= attachment_image_tag recipe.recipe_images[0], :image,:fill,230,230 %>
-       <h4 class="text-success"><%= recipe.name %></h4>
-        <% end %>
-      </div>
+        <div class="row mx-3 mt-3">
+         <%= link_to recipe_path(recipe.id)do %>
+          <div class="card img-thumbnail">
+           <%= attachment_image_tag recipe.recipe_images[0], :image,:fill,230,230 %>
+           <div class="average-review-rating-index mt-2" data-score=<%= @average_rating %>> </div>
+           <h4 class="text-success mt-3"><%= recipe.name %></h4>
+          </div>
+         <% end %>
+        </div>
        <% end %>
       </div>
      </div>
-    <div class="col-2">
-      <%= link_to "店舗を登録する",new_restaurant_path, data: {"turbolinks"=>false}  %><%#turbolinksを切る%>
-    <table class="table table-bottom_bordered restaurant-table mt-3">
-     <% @restaurants.each do |restaurant| %>
-      <tr>
-       <td>
-        <%= attachment_image_tag restaurant, :image ,:fill,50,50 %>
-       <span><%= link_to restaurant.name,restaurant_path(restaurant.id) %></span>
+     <script>
+      $('.average-review-rating-index').raty({
+         readOnly: true,
+         score: function() {
+         return $(this).attr('data-score');
+         },
+        path: '/assets/'
+       });
+    </script>
+
+     <div class="col-2">
+      <%= link_to "店舗を登録する",new_restaurant_path, data: {"turbolinks"=>false},class: 'btn btn-secondary'  %><%#turbolinksを切る%>
+      <table class="table border restaurant-table mt-3">
+       <% @restaurants.each do |restaurant| %>
+       <tr>
+        <td>
+        <i class="fas fa-utensils"></i>
+        <%= link_to restaurant.name,restaurant_path(restaurant.id),class: 'text-dark pl-3' %>
        </td>
       </tr>
      <% end %>

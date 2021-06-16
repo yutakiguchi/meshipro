@@ -1,20 +1,61 @@
 <div class="container mt-3 mb-5">
-  <div class="row mx-auto">
-    <div class="col-6">
-      <%=attachment_image_tag @restaurant,:image,:fill,500,500%>
-    </div>
-    <div class="col-6">
-     <h2 class="mx-3">
-      <%=@restaurant.name%>
-     </h2>
-     <h7 class="mx-2 mt-5">
-      <%=@restaurant.description%>
-     </h7>
-     <h5 class="mt-5 mx-2">
-      〒<%=@restaurant.postcode%><br/>
-      <%=@restaurant.prefecture_name%><%=@restaurant.address_city%><%=@restaurant.address_building%>
-     </h5>
-    </div>
-    </div>
+  <h1>店舗情報</h1>
+  <table class="table border mt-5">
+    <tr>
+      <td>店舗画像</td>
+      <td><%= attachment_image_tag @restaurant, :image,:fill,300,350 %></td>
+    </tr>
+      <tr>
+        <td>店舗名</td>
+        <td><%= @restaurant.name %></td>
+      </tr>
+      <tr>
+        <td>営業時間</td>
+        <td><%= @restaurant.business_start %>～<%= @restaurant.business_finish %></td>
+      </tr>
+      <tr>
+        <td>住所</td>
+        <td><%= @restaurant.prefecture_name %><%= @restaurant.address_city %><%= @restaurant.address_street %><%= @restaurant.address_building %></td>
+      </tr>
+      <tr>
+        <td>地図</td>
+        <td><div id="map"></div></td>
+        <style>
+          #map{
+            height: 250px;
+            width:300px;
+          }
+   </style>
+        <script type="text/javascript">
+          let map;
+          function initMap() {
+            geocoder = new google.maps.Geocoder()
+            map = new google.maps.Map(document.getElementById('map'), {
+              center: {
+                        lat: gon.restaurant.latitude,
+                        lng: gon.restaurant.longitude
+                      },
+              zoom: 16,
+            });
+
+            marker = new google.maps.Marker({
+              position: {
+                           lat: gon.restaurant.latitude,
+                           lng: gon.restaurant.longitude
+                        },
+              map: map
+            });
+          }
+        </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlliASppOVeUhaIMBPlOO1gO5B7AkWw8k&callback=initMap" async defer></script>
+      </tr>
+  </table>
+  <div class="row mt-4 offset-1">
+    <h3>コメント一覧</h3>
+    <%= @recipe.comments.each do |comment| %>
+      <%= comment.nickname %>
+      <%= comment.text %>
+    <% end %>
   </div>
 </div>
+

@@ -12,7 +12,6 @@ class CreateRestaurants < ActiveRecord::Migration[5.2]
       t.string :address_building
       t.float :latitude
       t.float :longitude
-
       t.timestamps
     end
   end

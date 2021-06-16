@@ -1,10 +1,9 @@
 <div class="container mt-3 mb-5">
   <div class="row">
-    <div class="mx-auto">
-      <div class="col-6">
-        <%=attachment_image_tag @restaurant,:image,:fill,500,500%>
+      <div class="col-md-6">
+        <%= attachment_image_tag @restaurant,:image,:fill,500,500 %>
       </div>
-      <div class="col-6">
+      <div class="col-md-6">
         <h2 class="mx-3">
           <%=@restaurant.name%>
         </h2>
@@ -13,45 +12,111 @@
         </h7>
         <h5 class="mt-5 mx-2">
           〒<%=@restaurant.postcode%><br/>
-          <%=@restaurant.prefecture_name%><%=@restaurant.address_city%><%=@restaurant.address_building%>
-          <%= render 'public/my_restaurants/favorite',restaurant: @restaurant %>
+          <%= @restaurant.prefecture_name %><%= @restaurant.address_city %><%=@restaurant.address_building %>
         </h5>
+        <div id="favorite_buttons_<%= @restaurant.id %>">
+          <%= render 'public/my_restaurants/favorite',restaurant: @restaurant %>
+        </div>
       </div>
-    </div>
   </div>
-  <div class="row mt-5">
-  <h5>コメント一覧</h5>
- </div>
- <table class="table">
-   <% @restaurant_comments.each do |comment|%>
-     <%= comment.user.nickname %>
-     <%= comment.text %>
-     <div class="rating_stars" data-score="<%= comment.rating %>"></div>
-     <script>
-      $('.rating_stars').raty({
-        readOnly: true,
-        score: function() {
-          return $(this).attr('data-score');
-        },
-        path: '/assets/'
+
+  <div class="row mt-3 pl-3">
+    <div class="average-review-rating-indexx" data-score=<%= @average_rating %>></div>
+    <span class="mx-4"><h4><%= @average_rating %></h4></spann>
+  </div>
+
+  
+
+   <style>
+     #map{
+       height: 250px;
+       width:300px;
+     }
+   </style>
+
+   <script type="text/javascript">
+    let map;
+    function initMap() {
+      geocoder = new google.maps.Geocoder()
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: { 
+                  lat: gon.restaurant.latitude,
+                  lng: gon.restaurant.longitude 
+                },
+        zoom: 16,
       });
-     </script>
-   <% end %>
- </table>
+      
+      marker = new google.maps.Marker({
+        position: {  
+                     lat: gon.restaurant.latitude,
+                     lng: gon.restaurant.longitude 
+                  },
+        map: map
+      });
+    }
+  </script>
+
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlliASppOVeUhaIMBPlOO1gO5B7AkWw8k&callback=initMap" async defer></script>
+
+
+  <div class="row mt-5">
+    <h4 class="text-left title">レビュー</h3>
+        <%#= render "public/restaurant_comments/comment", restaurant_comments: @restaurant_comments %>
+  </div>
+  <table class="table">
+    <% @restaurant_comments.each do |comment|%>
+      <%= comment.user.nickname %>
+      <%= comment.text %>
+      <div class="rating_stars" data-score="<%= comment.rating %>"></div>
+      <% if comment.user==current_user %>
+        <%= link_to public_restaurant_restaurant_comment_path(@restaurant,comment.id),method: :delete, local: true do %>
+          <i class="fas fa-trash" style="color : black;"></i>
+        <% end %>
+      <% end %>
+    <% end %>
+  </table>
+  <script>
+    $('.rating_stars').raty({
+      readOnly: true,
+        score: function() {
+      　return $(this).attr('data-score');
+        },
+          path: '/assets/'
+    });
+   </script>
+
 
 
   <div class="row">
+    <div class="comment_form col-6">
     <%= form_with model: [:public, @restaurant, @restaurant_comment],local: true do |f| %>
-   <%= f.text_field :text %>
-   <%= f.submit 'コメントする' %>
-  <% end %>
-  <script>
-   $('#rating_stars').raty({
-    starOn: "<%= asset_path('star-on.png') %>",
-    starOff: "<%= asset_path('star-off.png') %>",
-    starHalf: "<%= asset_path('star-half.png') %>",
-    scoreName: 'recipe_comment[rating]' //登録するモデル名とカラム名を記述
-   });
-  </script>
+      <%= f.text_area :text, placeholder: 'コメントをここに', size: "50x10" %>
+      <div id="rating_stars">
+        <label>評価</label>
+      </div>
+      <div class="action mt-3">
+        <%= f.submit 'コメントする' %>
+      </div>
+    <% end %>
+    </div>
+    <script>
+      $('#rating_stars').raty({
+        starOn: "<%= asset_path('star-on.png') %>",
+        starOff: "<%= asset_path('star-off.png') %>",
+        starHalf: "<%= asset_path('star-half.png') %>",
+        scoreName: 'restaurant_comment[rating]' //登録するモデル名とカラム名を記述
+      });
+    </script>
+
+  <div class="cock_recipe col-6">
+    <% @recipes.each do |recipe| %>
+      <%= link_to public_recipe_path(recipe.id) do %>
+        <%= attachment_image_tag recipe.recipe_images[0], :image,:fill,120,120 %>
+        <%= recipe.name %>
+      <% end %>
+    <% end %>
+  </div>
   </div>
 </div>
+
+

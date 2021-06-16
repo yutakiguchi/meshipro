@@ -1,0 +1,55 @@
+<%= restaurant_comments.count%>件のコメント
+  <h6 class="more" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">もっと見る....</h6>
+  <% restaurant_comments.first(2).each do |comment| %>
+    <% unless comment.id.nil? %>
+      <li class="comment">
+        <div class="comment_name">
+          <%= comment.user.nickname %>
+        </div>
+        <div class="comment_content">
+          <%= comment.text %>
+          <% if comment.user==current_user %>
+            <%= link_to public_restaurant_restaurant_comment_path(comment.restaurant.id,comment.id),method: :delete,remote: true do %>
+              <i class="fas fa-trash" style="color : black;"></i>
+            <% end %>
+          <% end %>
+        </div>
+        <span class="pill-right">
+          <%= comment.created_at.strftime('%Y/%m/%d') %>
+        </span>
+      </li>
+    <% end %>
+  <% end %>
+  <div class="collapse" id="collapseExample">
+    <% restaurant_comments.offset(2).each do |comment|%>
+      <% unless comment.id.nil? %>
+        <li class="comment">
+          <div class="comment_name">
+            <%= comment.user.nickname %>
+          </div>
+          <div class="comment_content">
+            <%= comment.text %>
+            <div class="rating_stars" data-score="<%= comment.rating %>"></div>
+            <% if comment.user==current_user %>
+              <%= link_to public_restaurant_restaurant_comment_path(comment.restaurant.id,comment.id),method: :delete,remote: true do %>
+                <i class="fas fa-trash" style="color : black;"></i>
+              <% end %>
+            <% end %>
+          </div>
+          <span class="pill-right">
+          <%= comment.created_at.strftime('%Y/%m/%d') %>
+          </span>
+        </li>
+      <% end %>
+    <% end %>
+  </div>
+  
+  <script>
+        $('.rating_stars').raty({
+          readOnly: true,
+          score: function() {
+          　return $(this).attr('data-score');
+          },
+          path: '/assets/'
+        });
+  </script>

@@ -72,6 +72,8 @@ gem 'jp_prefecture'
 gem 'ransack'
 gem 'cocoon'
 gem 'dotenv-rails'
+gem 'gon'
+gem 'geocoder'
 group :production do
   gem 'mysql2'
 end

@@ -21,4 +21,9 @@ end
 
 
 
+geocoded_by :address       #カラムを基準に経度と緯度を算出
+after_validation :geocode
+
+
+
 end

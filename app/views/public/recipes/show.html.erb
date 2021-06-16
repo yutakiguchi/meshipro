@@ -21,7 +21,9 @@
      <% end %>
     </table>
    </div>
-    <%= render 'public/my_recipes/favorite',recipe: @recipe %>
+   <div id="favorite_buttons_<%= @recipe.id %>">
+    <%= render 'public/my_recipes/favorite', recipe: @recipe %>
+   </div>
   </div>
   <div class="offset-2 col-3 mt-3">
    <div class="cock_restaurant">
@@ -35,11 +37,10 @@
    </div>
   </div>
  </div>
- 
+
  <div class="row mt-3 pl-3">
   <div class="average-review-rating" data-score=<%= @average_rating %>> </div>
   <p><%= @recipe.recipe_comments.count %>reviews</p>
- 
  </div>
 
  <div class="row mt-4">
@@ -70,7 +71,9 @@
    <%= comment.user.nickname %>
    <%= comment.text %>
    <div class="rating_stars" data-score="<%= comment.rating %>"></div>
-  <script>
+ <% end %>
+</table>
+<script>
   $('.rating_stars').raty({
     readOnly: true,
     score: function() {
@@ -79,12 +82,10 @@
     path: '/assets/'
   });
  </script>
- <% end %>
-</table>
 
  <div class="row">
   <%= form_with model: [:public, @recipe, @recipe_comment],local: true do |f| %>
-   <%= f.text_area :text, placeholder: 'コメントをここに', size: "250×300" %>
+   <%= f.text_area :text, placeholder: 'コメントをここに', size: "100x10" %>
    <div id="rating_stars">
     <label>評価</label>
    </div>

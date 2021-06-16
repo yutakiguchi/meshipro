@@ -8,10 +8,17 @@ class Public::RestaurantCommentsController < ApplicationController
       redirect_back(fallback_location: root_path)
     end
   end
+  
+  def destroy
+   @restaurant_comment = RestaurantComment.find(params[:id])
+   if @restaurant_comment.destroy
+    redirect_back(fallback_location: root_path)
+   end
+  end
 
   private
    def restaurant_comment_params
-     params.require(:restaurant_comment).permit(:text).merge(user_id:current_user.id)
+     params.require(:restaurant_comment).permit(:text,:rating).merge(user_id:current_user.id)
    end
 
 end
