@@ -2,6 +2,7 @@ class Public::RecipesController < ApplicationController
   def index
     @recipes = Recipe.all
     @restaurants = Restaurant.all
+    @ranks = Recipe.find(MyRecipe.group(:recipe_id).order('count(recipe_id)desc').limit(3).pluck(:recipe_id))
   end
 
   def show

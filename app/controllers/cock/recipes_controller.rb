@@ -27,7 +27,7 @@ class Cock::RecipesController < ApplicationController
 
  def show
   @recipe = Recipe.find(params[:id])
-
+  @average_rating = @recipe.recipe_comments.average(:rating).round(2)
  end
 
  def update

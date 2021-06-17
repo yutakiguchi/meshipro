@@ -1,4 +1,5 @@
 <div class="container mt-3 mb-5">
+  <div class="card">
   <div class="row">
       <div class="col-md-6">
         <%= attachment_image_tag @restaurant,:image,:fill,500,500 %>
@@ -7,12 +8,12 @@
         <h2 class="mx-3">
           <%=@restaurant.name%>
         </h2>
+        <h4><%= @restaurant.business_start %>～<%= @restaurant.business_finish %></h4>
         <h7 class="mx-2 mt-5">
           <%=@restaurant.description%>
         </h7>
         <h5 class="mt-5 mx-2">
-          〒<%=@restaurant.postcode%><br/>
-          <%= @restaurant.prefecture_name %><%= @restaurant.address_city %><%=@restaurant.address_building %>
+          <%= @restaurant.prefecture_name %><%= @restaurant.address_city %><%= @restaurant.address_street %><%=@restaurant.address_building %>
         </h5>
         <div id="favorite_buttons_<%= @restaurant.id %>">
           <%= render 'public/my_restaurants/favorite',restaurant: @restaurant %>
@@ -21,12 +22,9 @@
   </div>
 
   <div class="row mt-3 pl-3">
-    <div class="average-review-rating-indexx" data-score=<%= @average_rating %>></div>
+    <div class="average-review-rating" data-score=<%= @average_rating %>></div>
     <span class="mx-4"><h4><%= @average_rating %></h4></spann>
   </div>
-
-  
-
    <style>
      #map{
        height: 250px;
@@ -35,21 +33,21 @@
    </style>
 
    <script type="text/javascript">
-    let map;
-    function initMap() {
-      geocoder = new google.maps.Geocoder()
-      map = new google.maps.Map(document.getElementById('map'), {
-        center: { 
-                  lat: gon.restaurant.latitude,
-                  lng: gon.restaurant.longitude 
+      let map;
+      function initMap() {
+        geocoder = new google.maps.Geocoder()
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {
+                    lat: gon.restaurant.latitude,
+                    lng: gon.restaurant.longitude
                 },
         zoom: 16,
       });
-      
+
       marker = new google.maps.Marker({
-        position: {  
+        position: {
                      lat: gon.restaurant.latitude,
-                     lng: gon.restaurant.longitude 
+                     lng: gon.restaurant.longitude
                   },
         map: map
       });
@@ -57,6 +55,7 @@
   </script>
 
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlliASppOVeUhaIMBPlOO1gO5B7AkWw8k&callback=initMap" async defer></script>
+  </div>
 
 
   <div class="row mt-5">
@@ -108,12 +107,14 @@
       });
     </script>
 
-  <div class="cock_recipe col-6">
+  <div class="d-flex flex-wrap cock_recipe col-6">
     <% @recipes.each do |recipe| %>
       <%= link_to public_recipe_path(recipe.id) do %>
+        <div class="card mt-2 row mx-2">
         <%= attachment_image_tag recipe.recipe_images[0], :image,:fill,120,120 %>
-        <%= recipe.name %>
+        <p class="text-success"><%= recipe.name %></p>
       <% end %>
+      </div>
     <% end %>
   </div>
   </div>

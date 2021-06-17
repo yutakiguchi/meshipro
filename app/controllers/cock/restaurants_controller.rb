@@ -21,6 +21,7 @@ class Cock::RestaurantsController < ApplicationController
 
   def show
    @restaurant = Restaurant.find(params[:id])
+   @comments = @restaurant.restaurant_comments
     gon.restaurant = @restaurant
   end
 
