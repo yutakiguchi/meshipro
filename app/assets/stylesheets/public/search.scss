@@ -1,0 +1,27 @@
+// Place all the styles related to the public/homes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+
+.searchbox{
+  width: 350px;
+  position: relative;
+  background-color:#fff;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+}
+
+.search-btn{
+  display:block;
+  background:#5fad35;
+  width: 90px;
+  height: 36px;
+  line-height: 36px;
+  border: none;
+  border-radius: 0 6px 6px 0;
+  color:#FFF;
+  margin-top: 5px;
+}

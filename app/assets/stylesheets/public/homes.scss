@@ -1,3 +1,52 @@
 // Place all the styles related to the public/homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+
+.sign-btn-user{
+  display: block;
+  background: #A0CC64;
+  border-radius: 4px;
+  color:#FFF;
+  width: 200px;
+  line-height: 45px;
+  margin-top: 15px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .4);
+ }
+
+.sign-btn-user:hover {
+  top: -4px;
+  box-shadow: 0 7px 0 #80a350;
+}
+.sign-btn-user:active {
+  top: 3px;
+  box-shadow: none;
+}
+
+.login-btn-user{
+ display: block;
+ background:#00E2C7;
+ border-radius: 4px;
+ color:#FFF;
+ width: 200px;
+ line-height: 45px;
+ margin-top: 15px;
+ text-shadow: 0 1px 1px rgba(0, 0, 0, .4);
+}
+
+
+.login-btn-user:hover {
+  top: -4px;
+  box-shadow: 0 7px 0 #008777;
+}
+.login-btn-user:active {
+  top: 3px;
+  box-shadow: none;
+}
+
+.top{
+   font-family: 'Noto Sans JP', sans-serif;
+}

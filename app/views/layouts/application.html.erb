@@ -11,18 +11,17 @@
   </head>
 
   <body>
-　　 <header1></header1>
-     <%= render "layouts/header" %>
-     <%= render "layouts/search" %>
+    <div class="box">
+      <%= render "layouts/header" %>
+      <%= render "layouts/search" %>
 
-    <p class="notice page-title pl-1"><%= notice %></p>
-    <p class="alert page-title pl-1"><%= alert %></p>
-    <div id="wrapper">
-    <div class="main">
-      <%= yield %>
-    </div>
-    <%= render "layouts/footer"%>
+      <p class="notice page-title pl-1"><%= notice %></p>
+      <p class="alert page-title pl-1"><%= alert %></p>
     
-  </body>
+      <div class="main">
+        <%= yield %>
+      </div>
+      <%= render "layouts/footer"%>
+    </div>
   </body>
 </html>

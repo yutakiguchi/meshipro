@@ -13,17 +13,16 @@
   </div>
 
   <div class="field row mt-4">
-    <%= f.password_field :password_confirmation,placefolder: "パスワード確認", autocomplete: "new-password",class: "form-control password-confirm" %>
+    <%= f.password_field :password_confirmation,placeholder: "パスワード確認", autocomplete: "new-password",class: "form-control password-confirm" %>
   </div>
 
-  <div class="row form">
-    <%= f.submit "新規登録",class: "btn btn-success col-5 offset-3  mt-3 sign_up_btn" %>
+  <div class="actions row justify-content-center">
+    <%= f.submit "新規登録",class: 'sign-btn' %>
   </div>
 <% end %>
 
-<div class="mt-2 px-5">
- <span>ログインは</span>
-  <span><%= link_to "こちら",new_cock_session_path%></span>
+<div class="mt-2 row justify-content-center">
+  <span><%= render "cocks/shared/links" %></span>
 </div>
    </div>
  </div>

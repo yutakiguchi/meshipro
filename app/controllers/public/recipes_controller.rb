@@ -14,7 +14,7 @@ class Public::RecipesController < ApplicationController
     if @recipe.recipe_comments.blank?
       @average_rating = 0
     else
-      @average_rating = @recipe.recipe_comments.average(:rating).round(2)
+      @average_rating = @recipe.recipe_comments.average(:rating)&.round(2)
     end
   end
 end

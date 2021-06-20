@@ -1,7 +1,6 @@
 class Public::RestaurantsController < ApplicationController
  def index
   @restaurants = Restaurant.all
-  
  end
 
  def show
@@ -14,7 +13,7 @@ class Public::RestaurantsController < ApplicationController
   if @restaurant.restaurant_comments.blank?
     @average_rating = 0
   else
-    @average_rating = @restaurant.restaurant_comments.average(:rating).round(2)
+    @average_rating = @restaurant.restaurant_comments.average(:rating)&.round(2)
   end
  end
 end

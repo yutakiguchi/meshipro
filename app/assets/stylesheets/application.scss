@@ -17,74 +17,71 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
-
-.searchbox{
-  width: 350px;
-  position:relative;
-  background-color:#fff;
-  border:1px solid #aaa;
-  border-radius:6px;
-}
-
-.search-btn{
-  display:block;
-  background:#5fad35;
-  width:90px;
-  height:36px;
-  line-height:36px;
-  border:none;
-  border-radius: 0 6px 6px 0;
-  color:#FFF;
-  margin-top:5px;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 header{
+  background-color: #FFde59;
   width: 100%;
-  background-color: white;
-  height: 100px;
+  position: sticky;
   top: 0;
-}
-
-body{
-  position: relative;
+  z-index: 2;
 
 }
 
-body,
-#wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin-bottom: 70px;
+
+
+.box{
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 100px;
+    box-sizing: border-box;
+    /* ↑ヘッダーやフッターを含むすべての要素の高さ＝min-height:100vhになるように指定 */
 }
-
-
 
 footer{
-  width: 100%;
-  height: 80px;
-  text-align: center;
-  position: absolute;
-  bottom: 0;
-  height: 50px;
-  background-color: white;
+    position: absolute;
+    bottom: 0;
 
+    /* 以下 背景色やテキストカラーなどはお好みで指定してください */
+    background-color: #ffde59;
+    text-align: center;
+    width: 100%;
+    height: 100px;
+}
+
+footer p{
+  font-weight:bold;
+  color: #FFF;
+  margin-top: 20px;
+}
+
+.main-navi li{
+  font-weight:bold;
+  font-size: 16px;
 }
 
 
 .dropdown:hover .dropdown-menu {
     display: block;
+    background-color: gray;
 }
 
-.create{
-  font-size: 10px;
+.img-logo{
+  height: 190px;
+  width: 200px;
 }
 
-.update{
-  font-size: 10px;
+.menu{
+  position: relative;
 }
 
-table{
-  background-color: white;
+menu::after{
+  bottom: 0;
+  position: absolute;
+  right: 0;
 }
 

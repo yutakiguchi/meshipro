@@ -1,13 +1,20 @@
 <% if recipe.favorited_by?(current_user) %>
   <%= link_to public_recipe_my_recipes_path(recipe.id), method: :delete, remote: true, class: "like" do %>
+    <span class="like-count">
+      <i class="fas fa-thumbs-up" style="color: royalblue;"><%= recipe.my_recipes.count %></i>
+    </span>
     <div class="like-link">
-        <button class="like-link__btn-del">お気に入り済み<i class="far fa-thumbs-up 3x"></i></button>
+        <button class="btn btn-primary btn-sm">お気に入り済み<i class="fas fa-thumbs-up 3x"></i></button>
     </div>
+    
   <% end %>
 <% else %>
   <%= link_to public_recipe_my_recipes_path(recipe.id), method: :post, remote: true, class: "like" do %>
+    <span class="like-count">
+      <i class="fas fa-thumbs-up" style="color: royalblue;"><%= recipe.my_recipes.count %></i>
+    </span>
     <div class="like-link">
-        <button class="like-link__btn">お気に入りする<i class="far fa-thumbs-up 3x"></i></button>
+        <button class="btn btn-secondary btn-sm">お気に入りする<i class="far fa-thumbs-up 3x"></i></button>
     </div>
   <% end %>
 <% end %>
