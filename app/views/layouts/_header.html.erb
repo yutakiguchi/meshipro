@@ -12,24 +12,22 @@
      <div class="collapse navbar-collapse menu1" id="navbarNavDropdown">
       <ul class="navbar-nav main-navi  ml-auto">
         <% if cock_signed_in? %>
-         <li class="menu"><%= link_to "マイページ",cock_path(current_cock), class: 'nav-link text-white' %></li>
-         <li><%= link_to "ログアウト",destroy_cock_session_path,method: :delete, class: 'nav-link text-white' %></li>
+         <li class="menu"><%= link_to "マイページ",cock_path(current_cock), class: 'menu nav-link text-white' %></li>
+         <li><%= link_to "ログアウト",destroy_cock_session_path,method: :delete, class: 'menu nav-link text-white' %></li>
         <%elsif user_signed_in? %>
-         <li class="menu"><%= link_to "レシピ一覧",public_recipes_path, class: 'nav-link text-white' %></li>
-         <li><%= link_to "店舗一覧",public_restaurants_path, class: 'nav-link text-white' %></li>
+         <li><%= link_to "レシピ一覧",public_recipes_path, class: 'menu nav-link text-white' %></li>
+         <li><%= link_to "店舗一覧",public_restaurants_path, class: 'menu nav-link text-white' %></li>
          <li class="dropdown nav-link">
            <a href="#" class="dropdown-toggle text-white" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">お気に入り<span class="caret"></span></a>
            <ul class="dropdown-menu">
-             <li><%= link_to "お気に入りレシピ" ,my_recipes_public_user_path(current_user), class: 'nav-link text-white' %></li>
-             <li><%= link_to "お気に入り店舗" ,my_restaurants_public_user_path(current_user), class: 'nav-link text-white' %></li>
+             <li><%= link_to "お気に入りレシピ" ,my_recipes_public_user_path(current_user), class: 'menu nav-link text-white' %></li>
+             <li><%= link_to "お気に入り店舗" ,my_restaurants_public_user_path(current_user), class: 'menu nav-link text-white' %></li>
            </ul>
          </li>
-         <li><%= link_to "ログアウト",destroy_user_session_path,method: :delete, class: 'nav-link text-white' %></li>
-             <%#= link_to "飯プロとは",about_path, class: 'nav-link text-white' %>
+         <li><%= link_to "ログアウト",destroy_user_session_path,method: :delete, class: 'menu nav-link text-white' %></li>
         <%else%>
-         <li><%= link_to "閲覧無料登録",public_root_path, class: 'nav-link text-white' %></li>
-         <li><%= link_to "コックの方はこちらへ",root_path, class: 'nav-link text-white' %></li>
-         <li><%= link_to "飯プロとは",about_path, class: 'nav-link text-white' %></li>
+         <li><%= link_to "閲覧無料登録",public_root_path, class: 'menu nav-link text-white' %></li>
+         <li><%= link_to "コックの方はこちらへ",root_path, class: 'menu nav-link text-white' %></li>
         <%end%>
       </ul>
     </div>

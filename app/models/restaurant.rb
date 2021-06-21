@@ -19,7 +19,13 @@ def favorited_by?(user)
     my_restaurants.where(user_id: user.id).exists?
 end
 
-
+ validates :name, presence: true
+ validates :postcode, presence: true
+ validates :prefecture_code, presence: true
+ validates :address_city, presence: true
+ validates :business_start, presence: true
+ validates :business_finish, presence: true
+ validates :description, length: {maximum: 30}
 
 geocoded_by :address       #カラムを基準に経度と緯度を算出
 after_validation :geocode

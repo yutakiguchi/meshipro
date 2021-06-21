@@ -74,5 +74,4 @@ $(function(){
         score: function() {
         return $(this).attr('data-score')
         }
-      });
-});
+    });

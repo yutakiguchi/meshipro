@@ -1,25 +1,28 @@
-<div class="container-fluid">
+<div class="container-fluid mb-5">
   <div class="row">
    <div class="col-9"></div>
     <div class="col-3">
       <%= link_to "レシピを書く",new_recipe_path, data: {"turbolinks"=>false},class: "btn btn-info" %>
     </div>
   </div>
-   <div class="row">
+  <div class="row">
     <h5 class="offset-1">あなたのレシピは<span class="font-weit-nomal small"><%= @recipes.count %></span>件です</h5>
-   </div>
-    <div class="row mt-5">
-     <div class="col-8 offset-1">
-     <div class="d-flex flex-wrap">
-       <% @recipes.each do |recipe| %>
-        <div class="row mx-3 mt-3">
-         <%= link_to recipe_path(recipe.id)do %>
-          <div class="card img-thumbnail">
-           <%= attachment_image_tag recipe.recipe_images[0], :image,:fill,230,230 %>
-           <div class="average-review-rating-index mt-2" data-score=<%= recipe.recipe_comments.average(:rating)&.round(2) %>></div>
-           <h4 class="text-success mt-3"><%= recipe.name %></h4>
-          </div>
-         <% end %>
+  </div>
+  <div class="row mt-5">
+    <div class="col-8 offset-1">
+      <div class="d-flex flex-wrap">
+        <% @recipes.each do |recipe| %>
+          <div class="row mx-3 mt-3">
+            <%= link_to recipe_path(recipe.id)do %>
+              <div class="card img-thumbnail">
+                <%= attachment_image_tag recipe.recipe_images[0], :image,:fill,230,230,format: 'jpeg',fallback: "795px-No_image.jpg",size:'230x230' %>
+            <% end %>
+                <div class="average-review-rating-index mt-2" data-score=<%= recipe.recipe_comments.average(:rating)&.round(2) %>></div>
+                  <%= link_to recipe_path(recipe.id)do %>
+                  <h4 class="text-success mt-3"><%= recipe.name %></h4>
+                <% end %>
+              </div>
+
         </div>
        <% end %>
       </div>

@@ -1,12 +1,9 @@
 class Cock::CocksController < ApplicationController
-def show
-  @cock = Cock.find(params[:id])
-  @recipes = @cock.recipes
-  @restaurants = @cock.restaurants
-  
-end
+  before_action :authenticate_cock!
 
-
-
-
+  def show
+    @cock = Cock.find(params[:id])
+    @recipes = @cock.recipes
+    @restaurants = @cock.restaurants
+  end
 end

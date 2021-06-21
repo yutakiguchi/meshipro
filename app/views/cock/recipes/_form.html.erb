@@ -1,4 +1,5 @@
-<%= form_with model: recipe,url: recipes_path, local: true do |f| %>
+<%= render 'layouts/error',object: @recipe %>
+<%= form_with model: recipe, local: true do |f| %>
   <div class="mt-5 d-block">
     <%= f.label :recipe_images_images,'料理画像 '%>
     <%= attachment_image_tag recipe.recipe_images[0], :image,:fill,450,380,format: 'jpeg',fallback: "795px-No_image.jpg",size:'450x380',id:"preview" %>
@@ -7,6 +8,9 @@
   <div class="form mt-5 row col-3">
     <%=f.label :name,'料理名'%> <span class="input-need">※必須</span>
     <%=f.text_field :name, autocomplete: 'name',class: 'form-control' %>
+    <% if recipe.errors.include?(:name) %>
+      <p style="color: red;"><%= recipe.errors.full_messages_for(:name).first %>
+    <% end %>
   </div>
   <div class="form row mt-5">
     <%=f.label :explanation,'説明'%> <span class="input-unneed">※任意</span>
@@ -24,9 +28,12 @@
 
   <div class="form row mt-5">
     <%= f.label :cook_text,'調理行程' %><span class="input-need">※必須</span>
-    <%= f.text_area :cook_text ,autocomplete: 'cook_text',class: 'form-control',size: "10x10"%>
+    <%= f.text_area :cook_text ,autocomplete: 'cook_text',class: 'form-control',size:'10x10'%>
+    <% if recipe.errors.include?(:cook_text) %>
+       <p style="color: red;"><%= recipe.errors.full_messages_for(:cook_text).first %>
+    <% end %>
   </div>
-  <div class="button offset-11 col-1 mt-3">
-    <%=f.submit '投稿する'%>
+  <div class="button offset-11 col-1 mt-3 mb-5">
+    <%=f.submit '投稿する',class: 'btn btn-secondary'%>
   </div>
 <%end%>

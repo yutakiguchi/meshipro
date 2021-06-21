@@ -1,134 +1,121 @@
 <% provide(:title,"#{@recipe.name}")%>
-<div class="container">
- <div class="card p-md-4">
-  <h2 class="row mb-3 offset-1">
-   <%= @recipe.name %>
-  </h2>
-  <div class="row">
-   <div class="col-5 offset-1">
-    <%= attachment_image_tag @recipe.recipe_images[0], :image,:fill,300,300,format: 'jpeg',fallback: "795px-No_image.jpg",size:'300x300' %>
-   </div>
-   <div class="offset-1 col-3">
-    <div class="description mb-4">
-     <h5>説明</h5>
-      <%=@recipe.explanation%>
+<div class="container mb-5">
+  <div class="card p-md-4">
+    <h2 class="row mb-3 offset-1">
+      <%= @recipe.name %>
+    </h2>
+    <div class="row">
+      <div class="col-5 offset-1">
+        <%= attachment_image_tag @recipe.recipe_images[0], :image,:fill,300,300,format: 'jpeg',fallback: "795px-No_image.jpg",size:'300x300' %>
+      </div>
+      <div class="offset-1 col-3">
+        <div class="description mb-4">
+          <h5>説明</h5>
+          <%=@recipe.explanation%>
+        </div>
+        <div class="material mb-4">
+          <h5>材料</h5>
+          <table class="material">
+            <% @recipe.materials.each do |material| %>
+              <tr class="border-top">
+                <td><%= material.name %></td>
+                <td><%= material.quantity %></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
     </div>
-    <div class="material mb-4">
-     <h5>材料</h5>
-     <table class="material">
-      <% @recipe.materials.each do |material| %>
-       <%= material.name %>
-       <%= material.quantity %>
+
+    <div class="row mt-3 pl-3 col-3 offset-1">
+      <div class="average-review-rating" data-score=<%= @average_rating %>></div>
+      <div class="ml-4">
+        <i class="fas fa-thumbs-up" style="color: #17a2b8;"><%= @recipe.my_recipes.count %></i>
+      </div>
+    </div>
+
+
+    <div class="row mt-4">
+      <div class="mx-2">
+        <%= attachment_image_tag @recipe.recipe_images[1], :image,:fill,100,120 %>
+      </div>
+      <div class="mx-2">
+        <%= attachment_image_tag @recipe.recipe_images[2], :image,:fill,100,100 %>
+      </div>
+      <div class="mx-2">
+        <%= attachment_image_tag @recipe.recipe_images[3], :image,:fill,100,100 %>
+      </div>
+      <div class="mx-2">
+        <%= attachment_image_tag @recipe.recipe_images[4], :image,:fill,100,100 %>
+      </div>
+    </div>
+    <div class="row mt-5 mb-3 offset-1">
+      <h4>調理行程</h4>
+    </div>
+    <div class="row pb-5 offset-1">
+      <h6><%= simple_format(@recipe.cook_text) %></h6>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <h4 class="col-md-3">Comments</h4>
+    <p>(<%= @recipe.recipe_comments.count %>コメント)</p>
+  </div>
+  <div class="row justify-content-between">
+    <div class="col-md-6">
+      <% @recipe_comments.each do |comment|%>
+        <div class="comment-index border-bottom">
+          <ul style="list-style:none;">
+            <li><%= comment.user.nickname %></li>
+            <li><%= comment.text %></li>
+            <li><div class="rating_stars" data-score="<%= comment.rating %>"></div></li>
+            <% if comment.user==current_user %>
+              <%= link_to public_recipe_recipe_comment_path(@recipe,comment.id),method: :delete, local: true do %>
+                <li><i class="fas fa-trash" style="color : black;"></i></li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
       <% end %>
-     </table>
+
+
+
+      <div class="row offset-md-1 mt-5">
+        <%= form_with model: [:public, @recipe, @recipe_comment],local: true do |f| %>
+          <%= render 'layouts/error', object: f.object %>
+          <%= f.text_area :text, placeholder: 'コメントをここに', size: "30x5" %>
+          <div id="rating_stars">
+            <label>評価</label>
+          </div>
+          <div class="action mt-3">
+            <%= f.submit 'コメントする' %>
+          </div>
+        <% end %>
+        <script>
+          $('#rating_stars').raty({
+            starOn: "<%= asset_path('star-on.png') %>",
+            starOff: "<%= asset_path('star-off.png') %>",
+            starHalf: "<%= asset_path('star-half.png') %>",
+            scoreName: 'recipe_comment[rating]' //登録するモデル名とカラム名を記述
+          });
+        </script>
+      </div>
     </div>
-   </div>
-  </div>
 
-  <div class="row mt-3 pl-3 col-3 offset-1">
-   <div class="average-review-rating" data-score=<%= @average_rating %>> </div>
-   <p><%= @recipe.recipe_comments.count %>reviews</p>
-  </div>
-  <script>
-   $('.average-review-rating').raty({
-     readOnly: true,
-     starOn: "<%= asset_path('star-on.png') %>",
-     starOff: "<%= asset_path('star-off.png') %>",
-     starHalf: "<%= asset_path('star-half.png') %>",
-     score: function() {
-     return $(this).attr('data-score')
-        }
-    });
-  </script>
-
-
-  <div class="row mt-4">
-   <div class="mx-2">
-    <%= attachment_image_tag @recipe.recipe_images[1], :image,:fill,100,120 %>
-   </div>
-   <div class="mx-2">
-    <%= attachment_image_tag @recipe.recipe_images[2], :image,:fill,100,100 %>
-   </div>
-   <div class="mx-2">
-    <%= attachment_image_tag @recipe.recipe_images[3], :image,:fill,100,100 %>
-   </div>
-   <div class="mx-2">
-    <%= attachment_image_tag @recipe.recipe_images[4], :image,:fill,100,100 %>
-   </div>
-  </div>
-  <div class="row mt-5 mb-3 offset-1">
-   <h4>調理行程</h4>
-  </div>
-  <div class="row pb-5 offset-1">
-   <h6><%= @recipe.cook_text %></h6>
-  </div>
- </div>
-
- <div class="row mt-5">
-  <h4 class="col-md-3">Comments</h4>
- </div>
- <div class="row justify-content-between">
-   <div class="col-md-6">
-     <% @recipe_comments.each do |comment|%>
-     <div class="comment-index border-bottom">
-       <ul style="list-style:none;">
-         <li><%= comment.user.nickname %></li>
-         <li><%= comment.text %></li>
-         <li><div class="rating_stars" data-score="<%= comment.rating %>"></div></li>
-         <% if comment.user==current_user %>
-           <%= link_to public_recipe_recipe_comment_path(@recipe,comment.id),method: :delete, local: true do %>
-             <li><i class="fas fa-trash" style="color : black;"></i></li>
-           <% end %>
-         <% end %>
-       </ul>
-     </div>
-     <% end %>
-
-<script>
-  $('.rating_stars').raty({
-    readOnly: true,
-    score: function() {
-      return $(this).attr('data-score');
-    },
-    path: '/assets/'
-  });
- </script>
-
- <div class="row offset-md-1 mt-5">
-  <%= form_with model: [:public, @recipe, @recipe_comment],local: true do |f| %>
-   <%= f.text_area :text, placeholder: 'コメントをここに', size: "30x5" %>
-   <div id="rating_stars">
-    <label>評価</label>
-   </div>
-   <div class="action mt-3">
-    <%= f.submit 'コメントする' %>
-   </div>
-  <% end %>
-  <script>
-   $('#rating_stars').raty({
-    starOn: "<%= asset_path('star-on.png') %>",
-    starOff: "<%= asset_path('star-off.png') %>",
-    starHalf: "<%= asset_path('star-half.png') %>",
-    scoreName: 'recipe_comment[rating]' //登録するモデル名とカラム名を記述
-   });
-  </script>
-  </div>
- </div>
-
-  <div class="col-md-4">
-   <h6>< Restaurants ></h6>
-    <div class="row h-50 d-flex flex-wrap">
-     <% @restaurants.each do |restaurant| %>
-      <div class="mt-2 mx-2">
-       <%= link_to public_restaurant_path(restaurant.id) do %>
-         <%= attachment_image_tag restaurant, :image,:fill,120,120,format: 'jpeg',fallback: "795px-No_image.jpg",size:'120x120' %>
-         <p class="text-success"><%= restaurant.name %></p>
-       <% end %>
-       </div>
-     <% end %>
+    <div class="col-md-4">
+      <h6>< Restaurants ></h6>
+      <div class="row h-50 d-flex flex-wrap">
+        <% @restaurants.each do |restaurant| %>
+          <div class="mt-2 mx-2">
+            <%= link_to public_restaurant_path(restaurant.id) do %>
+              <%= attachment_image_tag restaurant, :image,:fill,120,120,format: 'jpeg',fallback: "795px-No_image.jpg",size:'120x120' %>
+              <p class="text-success"><%= restaurant.name %></p>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
- </div>
 </div>
 
 

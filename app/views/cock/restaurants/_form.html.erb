@@ -1,0 +1,34 @@
+<%= render 'layouts/error',object: @restaurant %>
+<%= form_with model: @restaurant,local: true do |f| %>
+    <div class="form">
+      <%=f.label :image,'店舗画像'%>
+      <%= attachment_image_tag @restaurant, :image,:fill,450,380,format: 'jpeg',fallback: "795px-No_image.jpg",size:'450x380',id:"preview" %>
+      <%= f.attachment_field :image %>
+    </div>
+    <div class="form">
+      <%= f.label :name,'店舗名' %>
+      <%= f.text_field :name, autocomplete: 'name', class: 'form-control' %>
+    </div>
+    <div class="row col-6 mt-4 mb-4">
+      <%= f.label :business_start, '営業開始' %>
+      <%= f.time_field :business_start, class: 'form-control' %>～
+      <%= f.label :business_finish, '営業終了' %>
+        <%= f.time_field :business_finish, class: 'form-control' %>
+    </div>
+    <div class="form mb-3">
+      <%= f.label :description, '店舗紹介(30字以内)' %>
+      <%= f.text_field :description, class: 'form-control' %>
+
+    </div>
+      <%= f.label :postcode, '郵便番号' %>
+      <%= f.text_field :postcode, autocomplete: 'post_code', class: 'form-control' %>
+      <%= f.label :prefecture_name, '都道府県'%>
+      <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code,:name,{prompt: '選択してください'},class:'form-control'%>
+  　　<%= f.label :address_city,'市区町村' %>
+  　　<%= f.text_field :address_city, autocomplete: 'address_city', class: 'form-control' %>
+      <%= f.label :address_street, '番地'%>
+      <%= f.text_field :address_street, autocomplete: 'address_street', class: 'form-control' %>
+      <%= f.label :address_building, '建物'%>
+      <%= f.text_field :address_building, autocomplete: 'address_building', class: 'form-control' %><br/>
+      <%= f.submit '店舗を登録する',class: 'btn btn-secondary' %>
+<%end%>

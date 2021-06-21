@@ -1,4 +1,5 @@
 class Public::RecipesController < ApplicationController
+  before_action :authenticate_user!
   def index
     @recipes = Recipe.all
     @restaurants = Restaurant.all
@@ -10,7 +11,6 @@ class Public::RecipesController < ApplicationController
     @recipe_comment = RecipeComment.new
     @recipe_comments = @recipe.recipe_comments
     @restaurants = @recipe.cock.restaurants
-    
     if @recipe.recipe_comments.blank?
       @average_rating = 0
     else
