@@ -11,9 +11,10 @@ class Cock::RestaurantsController < ApplicationController
    # addressカラムを追加して住所を結合する。
    # restaurant modelのgeocode_by をaddressに変更
    # たぶんlatitude, longitudeが登録時に保存されるはず。
+   #byebug
     @restaurant.address = @restaurant.prefecture_name + @restaurant.address_city + @restaurant.address_street
     @restaurant.cock_id = current_cock.id
-    if @restaurant.save!
+    if @restaurant.save
       flash[:notice] = "店舗を登録しました"
       redirect_to cock_path(current_cock)
     else
