@@ -12,7 +12,7 @@ def prefecture_name
   if name==nil
     name=""
   end
-  name 
+  name
 end
 
 
@@ -34,8 +34,6 @@ end
  validates :prefecture_code, presence: true
  validates :address_city, presence: true
  validates :address_street, presence: true
- validates :business_start, presence: true
- validates :business_finish, presence: true
  validates :description, length: {maximum: 30}
 
 

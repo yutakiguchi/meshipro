@@ -39,5 +39,11 @@ RSpec.describe User, type: :model do
       user.valid?
       expect(user).to be_valid
     end
+
+    it "パスワードが5文字以下である"do
+      user = build(:user, password: "a"*5, password_confirmation: "a"*5)
+      user.valid?
+      expect(user).to be_invalid
+    end
   end
 end

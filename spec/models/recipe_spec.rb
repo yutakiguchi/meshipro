@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Recipe, type: :model do
-  let(:cock){ create(:cock)}
+  let(:cock){ create(:cock) }
   let!(:recipe) { create(:recipe, cock_id: cock.id) }
 
   context "バリデーション"do

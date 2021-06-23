@@ -75,23 +75,15 @@
     </tr>
   </table>
 
-  <table class="table border">
-    <tr>
-      <td><h3 class="row mt-5 pl-2"><コメント一覧></h3></td>
-    </tr>
-      <% @comments.each do |comment| %>
-      <div class="container-comment ">
-        <tr>
-          <td class="pl-5">
-            <%= comment.user.nickname %>:
-            <%= comment.text %>
-          </td>
-          <td>
-            <div class="rating_stars" data-score="<%= comment.rating %>"></div>
-          </td>
-        </tr>
-      </div>
-      <% end %>
-  </table>
+  <h4 class="row mt-5">Comments</h4>
+  <% @comments.each do |comment| %>
+    <div class="comment-index border-bottom">
+      <ul style="list-style:none;">
+        <li><%= comment.user.nickname %></li>
+        <li><%= comment.text %></li>  
+        <li><div class="rating_stars" data-score="<%= comment.rating %>"></div></li>
+      </ul>
+    </div>
+  <% end %>
 </div>
 
