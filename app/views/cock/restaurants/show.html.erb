@@ -65,7 +65,7 @@
           });
         }
       </script>
-      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlliASppOVeUhaIMBPlOO1gO5B7AkWw8k&callback=initMap" async defer></script>
+      <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API'] %>&callback=initMap" async defer></script>
     </tr>
     <tr>
       <td>お気に入り数</td>
@@ -80,7 +80,7 @@
     <div class="comment-index border-bottom">
       <ul style="list-style:none;">
         <li><%= comment.user.nickname %></li>
-        <li><%= comment.text %></li>  
+        <li><%= comment.text %></li>
         <li><div class="rating_stars" data-score="<%= comment.rating %>"></div></li>
       </ul>
     </div>

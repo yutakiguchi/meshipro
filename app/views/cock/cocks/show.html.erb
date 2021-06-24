@@ -42,19 +42,19 @@
       });
     </script>
 
-     <div class="col-2">
+    <div class="col-2">
       <%= link_to "店舗を登録する",new_restaurant_path, class: 'btn btn-secondary'  %><%#turbolinksを切る%>
       <table class="table border restaurant-table mt-3">
         <p>< Restaurants ></p>
-       <% @restaurants.each do |restaurant| %>
-       <tr>
-        <td>
-        <i class="fas fa-utensils"></i>
-        <%= link_to restaurant.name,restaurant_path(restaurant.id),class: 'text-dark pl-3' %>
-       </td>
-      </tr>
-     <% end %>
-    </table>
+        <% @restaurants.each do |restaurant| %>
+          <tr>
+            <td>
+              <i class="fas fa-utensils"></i>
+              <%= link_to restaurant.name,restaurant_path(restaurant.id),class: 'text-dark pl-3' %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
     </div>
-   </div>
+  </div>
 </div>

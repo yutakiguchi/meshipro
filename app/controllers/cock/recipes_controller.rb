@@ -1,14 +1,12 @@
 class Cock::RecipesController < ApplicationController
   before_action :authenticate_cock!
-  
+  before_action :correct_recipe,only: [:show,:edit]
+
+
   def new
     @recipe = Recipe.new
     @recipe.recipe_images.build
     @recipe.materials.build
-  end
-  
-  def index
-    @recipes = current_cock.recipes
   end
 
   def edit
@@ -53,5 +51,12 @@ class Cock::RecipesController < ApplicationController
   private
   def recipe_params
     params.require(:recipe).permit(:name,:explanation,:material,:cook_text,materials_attributes:[:id,:name,:quantity,:_destroy],recipe_images_images:[])
+  end
+
+  def correct_recipe
+    @recipe = Recipe.find(params[:id])
+    unless @recipe.cock.id == current_cock.id
+      redirect_to root_path
+    end
   end
 end

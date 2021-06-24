@@ -1,6 +1,7 @@
 class Cock::RestaurantsController < ApplicationController
   before_action :authenticate_cock!
-  
+  before_action :correct_restaurant,only: [:show,:edit]
+
   def new
     @restaurant = Restaurant.new
   end
@@ -31,7 +32,7 @@ class Cock::RestaurantsController < ApplicationController
   def edit
     @restaurant = Restaurant.find(params[:id])
   end
-  
+
   def update
    @restaurant = Restaurant.find(params[:id])
    if @restaurant.update(restaurant_params)
@@ -40,7 +41,7 @@ class Cock::RestaurantsController < ApplicationController
    else
     render action: :edit
    end
-  end 
+  end
 
   def destroy
     @restaurant = Restaurant.find(params[:id])
@@ -56,5 +57,12 @@ class Cock::RestaurantsController < ApplicationController
   private
   def restaurant_params
     params.require(:restaurant).permit(:name,:postcode,:prefecture_code,:address_city,:address_street,:address_building,:description,:image,:address,:business_start,:business_finish).merge(cock_id:current_cock.id)
+  end
+
+  def correct_restaurant
+        @restaurant = Restaurant.find(params[:id])
+    unless @restaurant.cock.id == current_cock.id
+      redirect_to root_path
+    end
   end
 end
