@@ -20,7 +20,7 @@
               <div class="card img-thumbnail">
                 <%= attachment_image_tag recipe.recipe_images[0], :image,:fill,230,230,format: 'jpeg',fallback: "795px-No_image.jpg",size:'230x230' %>
             <% end %>
-                <div class="average-review-rating-index mt-2" data-score=<%= recipe.recipe_comments.average(:rating)&.round(2) %>></div>
+                <div class="average-review-rating mt-2" data-score=<%= recipe.recipe_comments.average(:rating)&.round(2) %>></div>
                   <%= link_to recipe_path(recipe.id)do %>
                   <h4 class="text-success mt-3"><%= recipe.name %></h4>
                 <% end %>
@@ -29,17 +29,7 @@
        <% end %>
       </div>
      </div>
-     <script>
-      $('.average-review-rating-index').raty({
-        readOnly: true,
-        starOn: "<%= asset_path('star-on.png') %>",
-        starOff: "<%= asset_path('star-off.png') %>",
-        starHalf: "<%= asset_path('star-half.png') %>",
-        score: function() {
-        return $(this).attr('data-score')
-        }
-      });
-    </script>
+
 
     <div class="col-2">
       <%= link_to "店舗を登録する",new_restaurant_path, class: 'btn btn-secondary'  %><%#turbolinksを切る%>

@@ -87,15 +87,7 @@
       </div>
     <% end %>
 
-  <script>
-    $('.rating_stars').raty({
-      readOnly: true,
-        score: function() {
-      　return $(this).attr('data-score');
-        },
-          path: '/assets/'
-    });
-   </script>
+  
 
    <div class="row offset-md-1 mt-5">
      <%= form_with model: [:public, @restaurant, @restaurant_comment],local: true do |f| %>
