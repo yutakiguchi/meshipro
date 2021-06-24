@@ -1,16 +1,16 @@
 <% if restaurant.favorited_by?(current_user) %>
   <%= link_to public_restaurant_my_restaurants_path(restaurant.id), method: :delete, remote: true, class: "like" do %>
     <span class="like-count">
-      <i class="fas fa-thumbs-up" style="color: royalblue;"><%= restaurant.my_restaurants.count %></i>
+      <i class="fas fa-thumbs-up" style="color: #17a2b8;"><%= restaurant.my_restaurants.count %></i>
     </span>
     <div class="like-link">
-        <button class="btn btn-primary btn-sm">お気に入り済み<i class="far fa-thumbs-up 3x"></i></button>
+        <button class="btn btn-info btn-sm">お気に入り済み<i class="far fa-thumbs-up 3x"></i></button>
     </div>
   <% end %>
 <% else %>
   <%= link_to public_restaurant_my_restaurants_path(restaurant.id), method: :post, remote: true, class: "like" do %>
     <span class="like-count">
-      <i class="fas fa-thumbs-up" style="color: royalblue;"><%= restaurant.my_restaurants.count %></i>
+      <i class="fas fa-thumbs-up" style="color: #17a2b8;"><%= restaurant.my_restaurants.count %></i>
     </span>
     <div class="like-link">
         <button class="btn btn-secondary btn-sm">お気に入りする<i class="far fa-thumbs-up 3x"></i></button>

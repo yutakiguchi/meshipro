@@ -28,11 +28,12 @@
     </div>
 
     <div class="row mt-3 pl-3 col-3 offset-1">
-      <div class="average-review-rating" data-score=<%= @average_rating %>></div>
+      <div class="average-review-rating-index" data-score=<%= @average_rating %>></div>
       <div class="ml-4">
         <i class="fas fa-thumbs-up" style="color: #17a2b8;"><%= @recipe.my_recipes.count %></i>
       </div>
     </div>
+    <%= render 'layouts/raty_index'%>
 
 
     <div class="row mt-4">
@@ -77,6 +78,7 @@
           </ul>
         </div>
       <% end %>
+      <%= render "layouts/raty_score" %>
 
 
 

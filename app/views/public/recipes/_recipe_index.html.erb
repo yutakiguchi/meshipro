@@ -2,7 +2,7 @@
     <div class="recipe-index row m-5 p-3 border-top">
       <%= link_to public_recipe_path(recipe.id)do %>
         <%= attachment_image_tag recipe.recipe_images[0], :image,:fill,270,250,format: 'jpeg',fallback: "795px-No_image.jpg",size:'270x250' %>
-      <% end %>  
+      <% end %>
       <div class="col-md-3 mx-3">
         <h4><%= link_to recipe.name,public_recipe_path(recipe.id),class: 'text-success' %></h4>
         <div class="average-review-rating-index mt-2 mb-1" data-score=<%= recipe.recipe_comments.average(:rating)&.round(2) %>></div>
@@ -22,14 +22,4 @@
     </div>
   <% end %>
 
-<script>
-  $('.average-review-rating-index').raty({
-    readOnly: true,
-    starOn: "<%= asset_path('star-on.png') %>",
-    starOff: "<%= asset_path('star-off.png') %>",
-    starHalf: "<%= asset_path('star-half.png') %>",
-    score: function() {
-      return $(this).attr('data-score')
-    }
-  });
-</script>
+<%= render "layouts/raty_index" %>

@@ -41,9 +41,10 @@
     </div>
 
     <div class="row mt-3 offset-1">
-      <div class="average-review-rating" data-score=<%= @average_rating %>></div>
+      <div class="average-review-rating-index" data-score=<%= @average_rating %>></div>
       <p><%= @recipe.recipe_comments.count %>reviews</p>
     </div>
+    <%= render "layouts/raty_index" %>
     <div class="row offset-1 mt-1">
       <span class="pr-2">お気に入り数</span>
         <i class="fas fa-thumbs-up" style="color: #17a2b8;"><%= @recipe.my_recipes.count %></i>

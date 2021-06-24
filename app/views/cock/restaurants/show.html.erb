@@ -71,9 +71,10 @@
       <td>お気に入り数</td>
       <td><i class="fas fa-thumbs-up"><%= @restaurant.restaurant_comments.count %></i></td>
       <td>評価</td>
-      <td><div class="average-review-rating" data-score=<%= @average_rating %>></div></td>
+      <td><div class="average-review-rating-index" data-score=<%= @average_rating %>></div></td>
     </tr>
   </table>
+  <%= render "layouts/raty_index" %>
 
   <h4 class="row mt-5">Comments</h4>
   <% @comments.each do |comment| %>

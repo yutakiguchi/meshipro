@@ -32,29 +32,6 @@ $(function(){
 });
 });
 
-$(function(){
-  $('.average-review-rating').raty({
-    readOnly: true,
-    starOn: "<%= asset_path('star-on.png') %>",
-    starOff: "<%= asset_path('star-off.png') %>",
-    starHalf: "<%= asset_path('star-half.png') %>",
-    score: function() {
-      return $(this).attr('data-score')
-    }
-  });
-});
-
-
-$(function(){
-  $('.rating_stars').raty({
-    readOnly: true,
-    score: function() {
-      return $(this).attr('data-score');
-    },
-    path: '/assets/'
-  });
-});
-
 
 
 $(function(){
@@ -64,20 +41,6 @@ $(function(){
         $("#preview").attr('src', e.target.result);
     }
     reader.readAsDataURL(e.target.files[0]);
+  });
 });
-});
-
-
-  $('.average-review-rating-index').raty({
-      readOnly: true,
-      starOn: "<%= asset_path('star-on.png') %>",
-      starOff: "<%= asset_path('star-off.png') %>",
-      starHalf: "<%= asset_path('star-half.png') %>",
-        score: function() {
-        return $(this).attr('data-score')
-        }
-    });
-
-
-
 
