@@ -11,6 +11,7 @@ class Recipe < ApplicationRecord
   validates :name,presence: true
   validates :cook_text,presence: true
 
+
   def favorited_by?(user)
     my_recipes.where(user_id: user.id).exists?
   end
