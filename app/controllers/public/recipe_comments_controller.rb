@@ -15,12 +15,13 @@ class Public::RecipeCommentsController < ApplicationController
     if @recipe_comment.destroy
       redirect_back(fallback_location: root_path)
     else
-      redirect_back(fallback_location: root_path)  
+      redirect_back(fallback_location: root_path)
     end
   end
 
   private
+  
   def recipe_comment_params
-    params.require(:recipe_comment).permit(:text,:rating).merge(user_id:current_user.id)
+    params.require(:recipe_comment).permit(:text, :rating).merge(user_id: current_user.id)
   end
 end

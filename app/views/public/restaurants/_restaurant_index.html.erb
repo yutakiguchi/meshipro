@@ -1,0 +1,32 @@
+<% restaurants.each do |restaurant| %>
+  <div class="row m-5 p-3 border-top">
+    <%= link_to public_restaurant_path(restaurant.id)do %>
+      <div class="col-md-3">
+        <%= attachment_image_tag restaurant, :image,:fill,270,250,format: 'jpeg',fallback: "795px-No_image.jpg",size:'270x250' %>
+      </div>
+      <div class="col-md-4 mx-3 mt-4">
+        <h4 class="text-success"><%= restaurant.name %></h4>
+    <% end %>
+        <div class="average-review-rating-index mt-2 mb-1" data-score=<%= restaurant.restaurant_comments.average(:rating)&.round(2) %>></div>
+        <div id="favorite_buttons_<%= restaurant.id %>">
+          <%= render 'public/my_restaurants/favorite',restaurant: restaurant %>
+        </div>
+      </div>
+      <div class="col-md-3 mt-4">
+        <p><%= restaurant.prefecture.name %><% restaurant.address_city %><%= restaurant.address_street %><%= restaurant.address_building %></p>
+        <p><%= restaurant.business_start.strftime("%H:%M") %>～<%= restaurant.business_finish.strftime("%H:%M") %></p>
+        <p class="mt-3"><%= restaurant.description %></p>
+      </div>
+    </div>
+<% end %>
+  <script>
+   $('.average-review-rating-index').raty({
+      readOnly: true,
+      starOn: "<%= asset_path('star-on.png') %>",
+      starOff: "<%= asset_path('star-off.png') %>",
+      starHalf: "<%= asset_path('star-half.png') %>",
+      score: function() {
+      return $(this).attr('data-score')
+        }
+    });
+  </script>

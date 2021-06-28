@@ -1,6 +1,6 @@
 class Cock::RecipesController < ApplicationController
   before_action :authenticate_cock!
-  before_action :correct_recipe,only: [:show,:edit]
+  before_action :correct_recipe, only: [:show, :edit]
 
 
   def new
@@ -10,22 +10,22 @@ class Cock::RecipesController < ApplicationController
   end
 
   def edit
-   @recipe = Recipe.find(params[:id])
+    @recipe = Recipe.find(params[:id])
   end
 
   def create
-   @recipe = current_cock.recipes.new(recipe_params)
-   if @recipe.save
-     flash[:notice] = "レシピを投稿しました"
-     redirect_to recipe_path(@recipe)
-   else
-     render action: :new
-   end
+    @recipe = current_cock.recipes.new(recipe_params)
+    if @recipe.save
+      flash[:notice] = "レシピを投稿しました"
+      redirect_to recipe_path(@recipe)
+    else
+      render action: :new
+    end
   end
 
   def show
-   @recipe = Recipe.find(params[:id])
-   @average_rating = @recipe.recipe_comments.average(:rating)&.round(2)
+    @recipe = Recipe.find(params[:id])
+    @average_rating = @recipe.recipe_comments.average(:rating)&.round(2)
   end
 
   def update
@@ -47,10 +47,11 @@ class Cock::RecipesController < ApplicationController
       render action: :recipes_path
     end
   end
-
+  
   private
+  
   def recipe_params
-    params.require(:recipe).permit(:name,:explanation,:material,:cook_text,materials_attributes:[:id,:name,:quantity,:_destroy],recipe_images_images:[])
+    params.require(:recipe).permit(:name, :explanation, :material, :cook_text, materials_attributes: [:id, :name, :quantity, :_destroy], recipe_images_images: [])
   end
 
   def correct_recipe

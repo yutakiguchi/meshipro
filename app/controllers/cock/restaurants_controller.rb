@@ -1,6 +1,6 @@
 class Cock::RestaurantsController < ApplicationController
   before_action :authenticate_cock!
-  before_action :correct_restaurant,only: [:show,:edit]
+  before_action :correct_restaurant, only: [:show, :edit]
 
   def new
     @restaurant = Restaurant.new
@@ -11,8 +11,6 @@ class Cock::RestaurantsController < ApplicationController
    # TODO
    # addressカラムを追加して住所を結合する。
    # restaurant modelのgeocode_by をaddressに変更
-   # たぶんlatitude, longitudeが登録時に保存されるはず。
-   #byebug
     @restaurant.address = @restaurant.prefecture_name + @restaurant.address_city + @restaurant.address_street
     @restaurant.cock_id = current_cock.id
     if @restaurant.save
@@ -34,33 +32,33 @@ class Cock::RestaurantsController < ApplicationController
   end
 
   def update
-   @restaurant = Restaurant.find(params[:id])
-   if @restaurant.update(restaurant_params)
-    flash[:notice] = "店舗を登録しました"
-    redirect_to restaurant_path(@restaurant)
-   else
-    render action: :edit
-   end
+    @restaurant = Restaurant.find(params[:id])
+    if @restaurant.update(restaurant_params)
+      flash[:notice] = "店舗を登録しました"
+      redirect_to restaurant_path(@restaurant)
+    else
+      render action: :edit
+    end
   end
 
   def destroy
     @restaurant = Restaurant.find(params[:id])
     if @restaurant.destroy
-     flash[:notice] = "登録店舗を削除しました"
-     redirect_to cock_path(current_cock)
+      flash[:notice] = "登録店舗を削除しました"
+      redirect_to cock_path(current_cock)
     else
-     render action: :edit
+      render action: :edit
     end
   end
-
-
+  
   private
+  
   def restaurant_params
-    params.require(:restaurant).permit(:name,:postcode,:prefecture_code,:address_city,:address_street,:address_building,:description,:image,:address,:business_start,:business_finish).merge(cock_id:current_cock.id)
+    params.require(:restaurant).permit(:name, :postcode, :prefecture_code, :address_city, :address_street, :address_building, :description, :image, :address, :business_start, :business_finish).merge(cock_id: current_cock.id)
   end
 
   def correct_restaurant
-        @restaurant = Restaurant.find(params[:id])
+    @restaurant = Restaurant.find(params[:id])
     unless @restaurant.cock.id == current_cock.id
       redirect_to root_path
     end

@@ -19,7 +19,8 @@ class Public::RestaurantCommentsController < ApplicationController
   end
 
   private
+  
   def restaurant_comment_params
-    params.require(:restaurant_comment).permit(:text,:rating).merge(user_id:current_user.id)
+    params.require(:restaurant_comment).permit(:text, :rating).merge(user_id: current_user.id)
   end
 end

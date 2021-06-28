@@ -1,6 +1,6 @@
 class Cock::CocksController < ApplicationController
   before_action :authenticate_cock!
-  before_action :correct_cock,only: [:show]
+  before_action :correct_cock, only: [:show]
 
   def show
     @cock = Cock.find(params[:id])
@@ -9,7 +9,7 @@ class Cock::CocksController < ApplicationController
   end
   
   def correct_cock
-        @cock = Cock.find(params[:id])
+    @cock = Cock.find(params[:id])
     unless @cock.id == current_cock.id
       redirect_to root_path
     end

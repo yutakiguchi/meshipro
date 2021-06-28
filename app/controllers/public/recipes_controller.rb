@@ -6,12 +6,6 @@ class Public::RecipesController < ApplicationController
     @ranks = Recipe.find(MyRecipe.group(:recipe_id).order('count(recipe_id)desc').limit(3).pluck(:recipe_id))
   end
   
-  def search
-    selection = params[:keyword]
-    @recipes = Recipe.sort(selection)
-    @ranks = Recipe.find(MyRecipe.group(:recipe_id).order('count(recipe_id)desc').limit(3).pluck(:recipe_id))
-  end
-    
   def show
     @recipe = Recipe.find(params[:id])
     @recipe_comment = RecipeComment.new
