@@ -1,14 +1,21 @@
 <div class="container top">
+  <div class="sign_modal_wrapper"></div>
   <h1 class="offset-1">Welcome To MeshiPro！</h1><br/>
   <div class="row offset-6">
     <h2>プロの技を必要としていませんか？</h2>
   </div>
     <div class="row mt-5 pb-10">
-      <div class="offset-3 col-3 pb-5">
-       <%= link_to "ユーザー登録",new_user_registration_path,class: 'btn sign-btn' %>
+      <div class="offset-3 col-3 pb-5 sign-btn-user sign_up_button">
+        ユーザー登録
       </div>
-      <div class="col-3 offset-1 pb-5">
-       <%= link_to "ユーザーログイン",new_user_session_path,class: 'btn login-btn' %>
+      <div class="col-3 offset-1 pb-5 login-btn-user sign_in_button">
+       ユーザーログイン
       </div>
-   </div>
+    </div>
+    <div class="sign_modal">
+      <span class="fa_wrapper"><i class="far fa-window-close"></i></span>
+      <%= render 'public/homes/registration' %>
+      <%= render 'public/homes/session' %>
+    </div>
  </div>
+

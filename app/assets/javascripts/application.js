@@ -21,6 +21,32 @@
 //= require jquery.raty
 //= require_tree .
 
+$(function() {
+  $(document).on('click', '.sign-btn-user', function() {
+    $('.sign_modal_wrapper').show();
+    $('.sign_modal').show();
+    ($(this).hasClass('sign_up_button'))
+      $('.sign_up_modal').fadeIn();
+  });
+});
+
+$(function() {
+  $(document).on('click', '.login-btn-user', function() {
+    $('.sign_modal_wrapper').show();
+    $('.sign_modal').show();
+    ($(this).hasClass('sign_up_button'))
+      $('.sign_in_modal').fadeIn();
+  });
+});
+
+$(document).on('click', '.sign_modal_wrapper, .fa_wrapper', function() {
+    $('.sign_modal_wrapper').hide();
+    $('.sign_modal').hide();
+    $('.sign_modal_content').hide();
+})
+
+
+
 
 $(function(){
  $('#restaurant_image').on('change', function (e) {

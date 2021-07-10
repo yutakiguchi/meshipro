@@ -1,14 +1,20 @@
 <div class="container top">
+  <div class="sign_modal_wrapper"></div>
   <h1 class="offset-1">Welcome to MeshiPro!</h1><br/>
   <div class="row offset-5">
     <h2>あなたの技を必要としている人がいます!</h2>
   </div>
   <div class="row mt-5 pb-10">
-    <div class="offset-3 col-3 pb-5">
-     <%=link_to "コック専用登録",new_cock_registration_path,class: "btn sign-btn"%>
+    <div class="offset-3 col-3 pb-5 sign-btn-user sign_up_button">
+      コック専用登録
     </div>
-    <div class="col-3 offset-1 pb-5">
-     <%=link_to "コック専用ログイン",new_cock_session_path,class: "btn login-btn"%>
+    <div class="col-3 offset-1 pb-5 login-btn-user sign_in_button">
+      コック専用ログイン
     </div>
   </div>
+  <div class="sign_modal">
+      <span class="fa_wrapper"><i class="far fa-window-close"></i></span>
+      <%= render 'cock/homes/registration' %>
+      <%= render 'cock/homes/session' %>
+    </div>
 </div>

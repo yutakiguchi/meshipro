@@ -15,11 +15,14 @@
   line-height: 45px;
   margin-top: 15px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, .4);
+  text-align: center;
+  height: 50px;
  }
 
 .sign-btn-user:hover {
   top: -4px;
   box-shadow: 0 7px 0 #80a350;
+  color: #ffffff;
 }
 .sign-btn-user:active {
   top: 3px;
@@ -35,12 +38,15 @@
  line-height: 45px;
  margin-top: 15px;
  text-shadow: 0 1px 1px rgba(0, 0, 0, .4);
+ text-align: center;
+ height: 50px;
 }
 
 
 .login-btn-user:hover {
   top: -4px;
   box-shadow: 0 7px 0 #008777;
+  color: #ffffff;
 }
 .login-btn-user:active {
   top: 3px;
@@ -49,4 +55,39 @@
 
 .top{
    font-family: 'Noto Sans JP', sans-serif;
+}
+
+.sign_modal{
+  position: absolute;
+  background-color: #fff;
+  width: 50%;
+  height: 45%;
+  left: 50%;
+  top: 40%;
+  margin: 100px auto 0;
+  border: 1px solid #eee;
+  display: none;
+  transform: translate(-50%, -50%);
+}
+
+.sign_modal_wrapper{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: black;
+  opacity: .7;
+  display: none;
+}
+
+.sign_modal_content{
+  display: none;
+  text-align: center;
+}
+
+.fa_wrapper {
+  cursor: pointer;
+  margin: 3px 3px 0 0;
+  font-size: 1.5em;
 }

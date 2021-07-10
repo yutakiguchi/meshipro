@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row mt-4 mb-4">
+    <div class="mx-auto sign_in_modal sign_modal_content">
+      <h2>ログイン</h2>
+      
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="field row mt-3">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "form-control email" %>
+          </div>
+
+          <div class="field row mt-4 ">
+            <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード6文字以上", class: "form-control email" %>
+          </div>
+
+          <% if devise_mapping.rememberable? %>
+            <div class="field">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+          <% end %>
+
+          <div class="actionsrow row justify-content-center">
+            <%= f.submit "ログイン",class: 'login-btn-user' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+</div>
