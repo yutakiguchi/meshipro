@@ -53,3 +53,37 @@
 .top{
    font-family: 'Noto Sans JP', sans-serif;
 }
+
+@media(max-width: 768px){
+  .welcome-text h1{
+    font-size: 20px;
+  }
+
+  .welcome-text h2{
+    font-size: 13px;
+  }
+
+  .welcome-text{
+    justify-content: center;
+    display: block;
+  }
+
+  .cock-btn{
+    display: block;
+    justify-content: center;
+
+    .sign_up_button{
+      margin-right: 10px;
+    }
+
+  }
+
+
+
+
+
+
+
+
+
+}
