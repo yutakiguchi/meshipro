@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row mt-4 mb-4">
+    <div class="mx-auto sign_up_modal sign_modal_content">
+      <h4>コック登録フォーム</h4>
+      <%= form_with model: @cock, scope: :cock, url: cock_registration_path, local: true  do |f| %>
+        <%= render "cocks/shared/error_messages", resource: resource %>
+        <div class="field row mt-3">
+          <%= f.email_field :email, autofocus: true,placeholder: "メールアドレス", class: "form-control email" %>
+        </div>
+
+        <div class="field row mt-4">
+          <%= f.password_field :password,placeholder: "パスワード 6文字以上", autocomplete: "new-password",class: "form-control password" %>
+        </div>
+
+        <div class="field row mt-4">
+          <%= f.password_field :password_confirmation,placeholder: "パスワード確認", autocomplete: "new-password",class: "form-control password-confirm" %>
+        </div>
+
+        <div class="actions row justify-content-center">
+          <%= f.submit "新規登録",class: 'sign-btn' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
