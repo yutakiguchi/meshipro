@@ -8,9 +8,9 @@ class Cock::RestaurantsController < ApplicationController
 
   def create
     @restaurant = Restaurant.new(restaurant_params)
-   # TODO
-   # addressカラムを追加して住所を結合する。
-   # restaurant modelのgeocode_by をaddressに変更
+    # TODO
+    # addressカラムを追加して住所を結合する。
+    # restaurantのmodelのgeocode_byをaddressに変更
     @restaurant.address = @restaurant.prefecture_name + @restaurant.address_city + @restaurant.address_street
     @restaurant.cock_id = current_cock.id
     if @restaurant.save
@@ -50,9 +50,9 @@ class Cock::RestaurantsController < ApplicationController
       render action: :edit
     end
   end
-  
+
   private
-  
+
   def restaurant_params
     params.require(:restaurant).permit(:name, :postcode, :prefecture_code, :address_city, :address_street, :address_building, :description, :image, :address, :business_start, :business_finish).merge(cock_id: current_cock.id)
   end

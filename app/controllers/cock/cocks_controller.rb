@@ -7,7 +7,7 @@ class Cock::CocksController < ApplicationController
     @recipes = @cock.recipes
     @restaurants = @cock.restaurants
   end
-  
+
   def correct_cock
     @cock = Cock.find(params[:id])
     unless @cock.id == current_cock.id

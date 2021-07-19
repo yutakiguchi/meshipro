@@ -2,7 +2,6 @@ class Cock::RecipesController < ApplicationController
   before_action :authenticate_cock!
   before_action :correct_recipe, only: [:show, :edit]
 
-
   def new
     @recipe = Recipe.new
     @recipe.recipe_images.build
@@ -47,9 +46,9 @@ class Cock::RecipesController < ApplicationController
       render action: :recipes_path
     end
   end
-  
+
   private
-  
+
   def recipe_params
     params.require(:recipe).permit(:name, :explanation, :material, :cook_text, materials_attributes: [:id, :name, :quantity, :_destroy], recipe_images_images: [])
   end

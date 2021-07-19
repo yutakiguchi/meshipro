@@ -69,12 +69,8 @@
   }
 
   .cock-btn{
-    display: block;
-    justify-content: center;
-
-    .sign_up_button{
-      margin-right: 10px;
-    }
+   display: block;
+   flex-wrap: nowrap;
 
   }
 
