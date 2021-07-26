@@ -1,5 +1,42 @@
 ja:
   activerecord:
+    models:
+      cock: "コック"
+      material: "材料"
+      my_recipe: "お気に入りレシピ"
+      my_restaurant: "お気に入り店舗"
+      recipe: "レシピ"
+      recipe_comment: "レシピコメント"
+      recipe_image: "レシピ画像"
+      restaurant: "レストラン"
+      restaurant_comment: "レストランコメント"
+      user: "ユーザー"
+    attributes:
+      cock:
+        email: "メールアドレス"
+        encrypted_password: "パスワード"
+      material:
+        name: "材料名"
+        quantity: "分量"
+      recipe_comment:
+        text: "コメント"
+      recipe:
+        name: "レシピ名"
+        explanation: "説明"
+        cook_text: "料理行程"
+      restaurant_comment:
+        text: "コメント"
+      restaurant:
+        name: "店舗名"
+        description: "説明"
+        postcode: "郵便番号"
+        prefecture_code: "都道府県"
+        address_street: "番地"
+        address_building: "建物名"
+      user:
+        email: "メールアドレス"
+        encrypted_password: "パスワード"
+        nickname: "ニックネーム"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
